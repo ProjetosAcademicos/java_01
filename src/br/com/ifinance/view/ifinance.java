@@ -1,4 +1,4 @@
-package br.com.ifinance.beans;
+package br.com.ifinance.view;
 
 public class ifinance {
 

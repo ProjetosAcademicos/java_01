@@ -33,12 +33,4 @@ public class Receita extends Movimento {
 		this.status = status;
 	}
 
-	public void adicionarReceita(double valorRecebido, Date dataRecebimento, boolean status, String descricao,
-			Date dataVencimento, double valorNominal, char tipoMovimentacao) {
-		this.valorRecebido = valorRecebido;
-		this.dataRecebimento = dataRecebimento;
-		this.status = status;
-		super.realizarMovimentacao(descricao, dataVencimento, valorNominal, tipoMovimentacao);
-	}
-
 }
