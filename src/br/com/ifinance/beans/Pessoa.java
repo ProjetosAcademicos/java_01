@@ -1,6 +1,6 @@
 package br.com.ifinance.beans;
 
-public class Pessoa {
+abstract class Pessoa {
 
 	private String nome;
 	private String endereco;

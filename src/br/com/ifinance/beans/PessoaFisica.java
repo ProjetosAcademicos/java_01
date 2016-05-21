@@ -2,14 +2,14 @@ package br.com.ifinance.beans;
 
 public class PessoaFisica extends Pessoa {
 
-	private int cpf;
-
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
+	private String cpf;
 
 }
