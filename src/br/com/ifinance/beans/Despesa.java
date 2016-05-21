@@ -8,7 +8,7 @@ public class Despesa extends Movimento {
 	private String documento;
 	private Date dataPgto;
 	private boolean pago;
-	private int valorPago;
+	private double valorPago;
 
 	public String getDocumento() {
 		return documento;
@@ -34,11 +34,11 @@ public class Despesa extends Movimento {
 		this.pago = pago;
 	}
 
-	public int getValorPago() {
+	public double getValorPago() {
 		return valorPago;
 	}
 
-	public void setValorPago(int valorPago) {
+	public void setValorPago(double valorPago) {
 		this.valorPago = valorPago;
 	}
 
