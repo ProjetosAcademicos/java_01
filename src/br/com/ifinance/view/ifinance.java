@@ -28,7 +28,9 @@ public class ifinance {
 		uGiovanni.setLogin("gioNic");
 		uGiovanni.setSenha("123");
 		
-		gio.setUsuario(uGiovanni);		
+		gio.setUsuario(uGiovanni);	
+		
+		System.out.println("inicio do funcionamento do sistema ... ");
 		
 		
 	}
