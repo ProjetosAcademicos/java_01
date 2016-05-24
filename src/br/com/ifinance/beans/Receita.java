@@ -1,13 +1,10 @@
 package br.com.ifinance.beans;
 
-import java.util.Date;
-
 public class Receita extends Movimento {
 
 	private static final long serialVersionUID = 1L;
 	private double valorRecebido;
-	private Date dataRecebimento;
-	private boolean status;
+	private String dataRecebimento;
 
 	public double getValorRecebido() {
 		return valorRecebido;
@@ -17,20 +14,12 @@ public class Receita extends Movimento {
 		this.valorRecebido = valorRecebido;
 	}
 
-	public Date getDataRecebimento() {
+	public String getDataRecebimento() {
 		return dataRecebimento;
 	}
 
-	public void setDataRecebimento(Date dataRecebimento) {
+	public void setDataRecebimento(String dataRecebimento) {
 		this.dataRecebimento = dataRecebimento;
-	}
-
-	public boolean isRecebido() {
-		return status;
-	}
-
-	public void setRecebido(boolean status) {
-		this.status = status;
 	}
 
 }

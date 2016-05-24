@@ -1,12 +1,10 @@
 package br.com.ifinance.beans;
 
-import java.util.Date;
-
 public class Despesa extends Movimento {
 
 	private static final long serialVersionUID = 1L;
 	private String documento;
-	private Date dataPgto;
+	private String dataPgto;
 	private boolean pago;
 	private double valorPago;
 
@@ -18,11 +16,11 @@ public class Despesa extends Movimento {
 		this.documento = documento;
 	}
 
-	public Date getDataPgto() {
+	public String getDataPgto() {
 		return dataPgto;
 	}
 
-	public void setDataPgto(Date dataPgto) {
+	public void setDataPgto(String dataPgto) {
 		this.dataPgto = dataPgto;
 	}
 

@@ -1,7 +1,5 @@
 package br.com.ifinance.beans;
 
-import java.util.ArrayList;
-
 abstract class Pessoa {
 
 	private String nome;
@@ -10,7 +8,6 @@ abstract class Pessoa {
 	private String cidade;
 	private String cep;
 	private Movimento movimento;
-
 	private Usuario usuario;
 
 	public String getNome() {
@@ -53,20 +50,20 @@ abstract class Pessoa {
 		this.cep = cep;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
 	public Movimento getMovimento() {
 		return movimento;
 	}
 
 	public void setMovimento(Movimento movimento) {
 		this.movimento = movimento;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

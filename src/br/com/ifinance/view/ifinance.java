@@ -1,42 +1,18 @@
 package br.com.ifinance.view;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.io.IOException;
 
-import br.com.ifinance.beans.Despesa;
-import br.com.ifinance.beans.PessoaFisica;
-import br.com.ifinance.beans.Usuario;
+import br.com.ifinance.dao.ReceitaDAO;
 
 public class ifinance {
 
-	public static void main(String[] args) {
-		PessoaFisica gio = new PessoaFisica();
-		gio.setNome("Giovanni Nicoletti");
-		gio.setBairro("Lagoa Nova");
-		gio.setCep("59064370");
-		gio.setCidade("Natal");
-		gio.setCpf("03464888427");
-		gio.setEndereco("Rua Anibal Correia");
-		
-		Usuario uGiovanni = new Usuario();
-		uGiovanni.setLogin("gioNic");
-		uGiovanni.setSenha("123");		
-		gio.setUsuario(uGiovanni);	
-		
-		Despesa dAgua = new Despesa();		
-		dAgua.setDataVencimento(new Date(2016, 05, 10));
-		dAgua.setDescricao("Agua");
-		dAgua.setTipoMovimento('D');
-		dAgua.setValorNominal(200.0);
-		dAgua.setValorPago(205.09);
-		
-		//new ArrayList<Movimento>();
-		gio.setMovimento(dAgua);
-		
-		System.out.println("Inicio do Funcionamento do Sistema ... ");
-		System.out.println( ((Despesa) gio.getMovimento()).getValorPago() );
-		
-		
+	public static void main(String[] args) throws ClassNotFoundException, IOException {
+
+		ReceitaDAO receitaDAO = new ReceitaDAO();
+		receitaDAO.addReceita("Conta de Luz", "30/05/2016", 123.99, 123.99, "25/05/2016");
+		receitaDAO.addReceita("Conta de Água", "28/05/2016", 150.92, 150.92, "25/05/2016");
+		receitaDAO.addReceita("Condomínio", "05/05/2016", 250.00, 250.00, "01/05/2016");
+		receitaDAO.ReadMovimentacao();
 	}
 
 }
