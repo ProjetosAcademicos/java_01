@@ -20,11 +20,17 @@ public class ReceitaDAO extends MovimentoDAO {
 		novaReceita.setValorNominal(valorNominal);
 		novaReceita.setValorRecebido(valorRecebido);
 		novaReceita.setValorRecebido(valorRecebido);
-		String receita = "Descricao: " + descricao + "\n" + "Data de Vencimento: " + dataVencimento + "\n"
+		String receita = "Receita: " + descricao + "\n" + "Data de Vencimento: " + dataVencimento + "\n"
 				+ "Valor inicial: " + valorNominal + "\n" + "Valor recebido: " + valorRecebido + "\n"
 				+ "Data de recebimento: " + dataRecebimento + "\n";
-		WriteMovimentacao(receita);
+		EscreverMovimentacao(receita);
 
 	}
+	
+	// Metodo que realiza apenas a leitura de todos os dados
+		// do arquivo e retorna uma string que contem os dados
+		public void LerReceita(String tipoMovimentacao) throws IOException, ClassNotFoundException {
+			super.LerMovimentacao(tipoMovimentacao);
+		}
 
 }
