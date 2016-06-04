@@ -5,6 +5,7 @@ import java.io.ObjectOutputStream;
 
 public class PersistenciaDAO {
 
+	
 	/**
 	 * O arquivo é aberto em uma FileOutputStream . Caso o arquivo não exista,
 	 * ele é criado. É criado um ObjectOutputStream a partir da stream anterior.
