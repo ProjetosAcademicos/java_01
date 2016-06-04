@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 public class PersistenciaDAO {
 
@@ -33,6 +34,20 @@ public class PersistenciaDAO {
 		}
 	}
 
+//	public static void salvar2(ArrayList<Object> lista, String caminho) {
+//		try {
+//			FileOutputStream saveFile = new FileOutputStream(caminho);
+//			ObjectOutputStream stream = new ObjectOutputStream(saveFile);
+//
+//			// salva o objeto
+//			stream.writeObject(lista);
+//
+//			stream.close();
+//		} catch (Exception exc) {
+//			exc.printStackTrace();
+//		}
+//	}
+	
 	/**
 	 * recuperar qlq objeto do arquivo *.txt para memoria
 	 * @param caminho do arquivo txt
