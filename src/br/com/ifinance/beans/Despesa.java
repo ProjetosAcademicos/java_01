@@ -1,11 +1,12 @@
 package br.com.ifinance.beans;
 
-public class Despesa extends Movimento {
+import java.io.Serializable;
 
-	private static final long serialVersionUID = 1L;
+public class Despesa extends Movimento implements Serializable {
+
+	private static final long serialVersionUID = 7532438393566281481L;
 	private String documento;
 	private String dataPgto;
-	private boolean pago;
 	private double valorPago;
 
 	public String getDocumento() {
@@ -22,14 +23,6 @@ public class Despesa extends Movimento {
 
 	public void setDataPgto(String dataPgto) {
 		this.dataPgto = dataPgto;
-	}
-
-	public boolean isPago() {
-		return pago;
-	}
-
-	public void setPago(boolean pago) {
-		this.pago = pago;
 	}
 
 	public double getValorPago() {

@@ -1,8 +1,10 @@
 package br.com.ifinance.beans;
 
-public class Receita extends Movimento {
+import java.io.Serializable;
 
-	private static final long serialVersionUID = 1L;
+public class Receita extends Movimento implements Serializable {
+
+	private static final long serialVersionUID = -3582439682901639327L;
 	private double valorRecebido;
 	private String dataRecebimento;
 

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Movimento implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 238784396833733304L;
 	private String descricao;
 	private String dataVencimento;
 	private double valorNominal;
