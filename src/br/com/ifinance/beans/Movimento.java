@@ -8,6 +8,15 @@ public class Movimento implements Serializable {
 	private String descricao;
 	private String dataVencimento;
 	private double valorNominal;
+	private int baixado;
+
+	public int getBaixado() {
+		return baixado;
+	}
+
+	public void setBaixado(int baixado) {
+		this.baixado = baixado;
+	}
 
 	public String getDescricao() {
 		return descricao;
