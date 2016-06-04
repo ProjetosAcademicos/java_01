@@ -6,6 +6,10 @@ public class PessoaJuridica extends Pessoa {
 	
 	private String cnpj;
 
+	public PessoaJuridica() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public PessoaJuridica(String cnpj) {
 		this.cnpj = cnpj;
 	}

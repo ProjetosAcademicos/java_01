@@ -6,6 +6,10 @@ public class PessoaFisica extends Pessoa {
 	
 	private String cpf;
 
+	public PessoaFisica() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public PessoaFisica(String cpf) {
 		this.cpf = cpf;
 	}

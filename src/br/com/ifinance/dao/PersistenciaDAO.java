@@ -1,11 +1,12 @@
 package br.com.ifinance.dao;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class PersistenciaDAO {
 
-	
 	/**
 	 * O arquivo é aberto em uma FileOutputStream . Caso o arquivo não exista,
 	 * ele é criado. É criado um ObjectOutputStream a partir da stream anterior.
@@ -31,7 +32,29 @@ public class PersistenciaDAO {
 			exc.printStackTrace();
 		}
 	}
-	
-	
+
+	/**
+	 * recuperar qlq objeto do arquivo *.txt para memoria
+	 * @param caminho do arquivo txt
+	 * @return objeto requisitado
+	 */
+	public static Object restaurar(String caminho) {
+
+		Object objeto = null;
+
+		try {
+			FileInputStream restFile = new FileInputStream(caminho);
+			ObjectInputStream stream = new ObjectInputStream(restFile);
+
+			// recupera o objeto
+			objeto = stream.readObject();
+
+			stream.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return objeto;
+	}
 
 }
