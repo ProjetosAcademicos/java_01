@@ -21,6 +21,20 @@ public class PessoaFisica extends Pessoa {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder strUtil = new StringBuilder();
+		strUtil.append("CPF: " + getCpf()+"\n"); 
+		strUtil.append("Nome: " + getNome()+"\n");
+		strUtil.append("Endereco: " + getEndereco()+"\n");
+		strUtil.append("Bairro: " + getBairro()+"\n");
+		strUtil.append("Cidade: " + getCidade()+"\n");
+		strUtil.append("CEP: " + getCep()+"\n");
+		strUtil.append("login: " + getUsuario().getLogin()+"\n");		
+		
+		return strUtil.toString();
+	}
 
 
 }
