@@ -2,6 +2,14 @@ package br.com.ifinance.beans;
 
 public class PessoaFisica extends Pessoa {
 
+	private static final long serialVersionUID = 20160604L;
+	
+	private String cpf;
+
+	public PessoaFisica(String cpf) {
+		this.cpf = cpf;
+	}
+	
 	public String getCpf() {
 		return cpf;
 	}
@@ -10,6 +18,5 @@ public class PessoaFisica extends Pessoa {
 		this.cpf = cpf;
 	}
 
-	private String cpf;
 
 }

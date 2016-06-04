@@ -10,7 +10,11 @@ public class ifinance {
 			IOException {
 
 		ReceitaDAO receitaDAO = new ReceitaDAO();
-		receitaDAO.addReceita("Salário", "01/06/2016", 2500.00, 2550.00, "05/06/2016");
+		receitaDAO.addReceita("Salario", 
+				"01/06/2016", 
+				2500.00, 
+				2550.00, 
+				"05/06/2016");
 
 	}
 }

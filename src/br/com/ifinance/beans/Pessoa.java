@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 abstract class Pessoa implements Serializable {
 
-	private static final long serialVersionUID = 8652017009866635857L;
+	private static final long serialVersionUID = 20160604L;
+	
 	private String nome;
 	private String endereco;
 	private String bairro;
