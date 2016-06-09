@@ -8,16 +8,17 @@ import br.com.ifinance.dao.PersistenciaDAO;
 
 public class testeRecuperar {
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		
+
 		PessoaFisica pfis = new PessoaFisica();
-		
+
 		List<PessoaFisica> lPFisica = new ArrayList<PessoaFisica>();
-		
-		lPFisica = (List<PessoaFisica>) PersistenciaDAO.restaurar("pfisica.txt");
-		
-		System.out.println(lPFisica.get(0).getNome()); 
-		System.out.println(lPFisica.get(1).getNome()); 
-		
+
+		lPFisica = (List<PessoaFisica>) PersistenciaDAO.ler("pfisica.txt");
+
+		System.out.println(lPFisica.get(0).getNome());
+		System.out.println(lPFisica.get(1).getNome());
+
 	}
 }

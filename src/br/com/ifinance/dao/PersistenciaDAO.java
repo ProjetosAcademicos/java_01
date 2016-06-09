@@ -1,11 +1,11 @@
 package br.com.ifinance.dao;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PersistenciaDAO {
 
@@ -22,7 +22,8 @@ public class PersistenciaDAO {
 	 *            do arquivo txt
 	 * 
 	 */
-	public static void salvar(Object objeto, String caminho) {
+	public static void salvar(Object objeto, String caminho)
+			throws IOException, FileNotFoundException {
 		try {
 			FileOutputStream saveFile = new FileOutputStream(caminho);
 			ObjectOutputStream stream = new ObjectOutputStream(saveFile);
@@ -42,21 +43,20 @@ public class PersistenciaDAO {
 	 *            do arquivo txt
 	 * @return lista de objetos requisitada
 	 */
-	@SuppressWarnings("unchecked")
 	public static Object ler(String caminho) {
 
-		List<Object> objetos = new ArrayList<Object>();
+		Object objeto = new Object();
 
 		try {
 			FileInputStream restFile = new FileInputStream(caminho);
 			ObjectInputStream stream = new ObjectInputStream(restFile);
 			// recupera a lista de objetos do arquivo
-			objetos = (List<Object>) stream.readObject();
+			objeto = (Object) stream.readObject();
 			stream.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return objetos;
+		return objeto;
 	}
 
 }

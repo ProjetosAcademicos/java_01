@@ -1,5 +1,7 @@
 package br.com.ifinance.view;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,7 @@ import br.com.ifinance.dao.PersistenciaDAO;
 
 public class testeSalvar {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
 		List<PessoaFisica> lFisica = new ArrayList<PessoaFisica>();
 		
 		PessoaFisica gio = new PessoaFisica("0346548887");

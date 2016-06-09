@@ -1,13 +1,11 @@
 package br.com.ifinance.beans;
 
-import java.io.Serializable;
-import java.util.Date;
 
-public class Receita extends Movimento implements Serializable {
+public class Receita extends Movimento {
 
 	private static final long serialVersionUID = -3582439682901639327L;
 	private double valorRecebido;
-	private Date dataRecebimento;
+	private String dataRecebimento;
 
 	public double getValorRecebido() {
 		return valorRecebido;
@@ -17,11 +15,11 @@ public class Receita extends Movimento implements Serializable {
 		this.valorRecebido = valorRecebido;
 	}
 
-	public Date getDataRecebimento() {
+	public String getDataRecebimento() {
 		return dataRecebimento;
 	}
 
-	public void setDataRecebimento(Date date) {
+	public void setDataRecebimento(String date) {
 		this.dataRecebimento = date;
 	}
 
