@@ -5,17 +5,19 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PersistenciaDAO {
 
 	/**
-	 * O arquivo é aberto em uma FileOutputStream . Caso o arquivo não exista,
-	 * ele é criado. É criado um ObjectOutputStream a partir da stream anterior.
-	 * Ao escrever no ObjectOutputStream, os dados são enviados por meio da
-	 * FileOutputStream para o arquivo físico. Por fim, a stream é fechada.
+	 * O arquivo eh aberto em uma FileOutputStream . Caso o arquivo nao exista,
+	 * ele eh criado. Eh criado um ObjectOutputStream a partir da stream
+	 * anterior. Ao escrever no ObjectOutputStream, os dados sao enviados por
+	 * meio do FileOutputStream para o arquivo fisico. Por fim, a stream eh
+	 * fechada.
 	 * 
 	 * @param objeto
-	 *            passar o objeto a ser persistido
+	 *            passar o objeto a ser persistida
 	 * @param caminho
 	 *            do arquivo txt
 	 * 
@@ -25,51 +27,36 @@ public class PersistenciaDAO {
 			FileOutputStream saveFile = new FileOutputStream(caminho);
 			ObjectOutputStream stream = new ObjectOutputStream(saveFile);
 
-			// salva o objeto
+			// salva a lista de objetos no arquivo .txt"
 			stream.writeObject(objeto);
-
-			stream.close();
-		} catch (Exception exc) {
-			exc.printStackTrace();
-		}
-	}
-
-//	public static void salvar2(ArrayList<Object> lista, String caminho) {
-//		try {
-//			FileOutputStream saveFile = new FileOutputStream(caminho);
-//			ObjectOutputStream stream = new ObjectOutputStream(saveFile);
-//
-//			// salva o objeto
-//			stream.writeObject(lista);
-//
-//			stream.close();
-//		} catch (Exception exc) {
-//			exc.printStackTrace();
-//		}
-//	}
-	
-	/**
-	 * recuperar qlq objeto do arquivo *.txt para memoria
-	 * @param caminho do arquivo txt
-	 * @return objeto requisitado
-	 */
-	public static Object restaurar(String caminho) {
-
-		Object objeto = null;
-
-		try {
-			FileInputStream restFile = new FileInputStream(caminho);
-			ObjectInputStream stream = new ObjectInputStream(restFile);
-
-			// recupera o objeto
-			objeto = stream.readObject();
-
 			stream.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
 
-		return objeto;
+	/**
+	 * recuperar a lista de objetos do arquivo .txt para memoria
+	 * 
+	 * @param caminho
+	 *            do arquivo txt
+	 * @return lista de objetos requisitada
+	 */
+	@SuppressWarnings("unchecked")
+	public static Object ler(String caminho) {
+
+		List<Object> objetos = new ArrayList<Object>();
+
+		try {
+			FileInputStream restFile = new FileInputStream(caminho);
+			ObjectInputStream stream = new ObjectInputStream(restFile);
+			// recupera a lista de objetos do arquivo
+			objetos = (List<Object>) stream.readObject();
+			stream.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return objetos;
 	}
 
 }

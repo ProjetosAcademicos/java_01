@@ -1,12 +1,13 @@
 package br.com.ifinance.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Movimento implements Serializable {
 
 	private static final long serialVersionUID = 238784396833733304L;
 	private String descricao;
-	private String dataVencimento;
+	private Date dataVencimento;
 	private double valorNominal;
 	private int baixado;
 
@@ -26,12 +27,12 @@ public class Movimento implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public String getDataVencimento() {
+	public Date getDataVencimento() {
 		return dataVencimento;
 	}
 
-	public void setDataVencimento(String localDate) {
-		this.dataVencimento = localDate;
+	public void setDataVencimento(Date date) {
+		this.dataVencimento = date;
 	}
 
 	public Double getValorNominal() {
