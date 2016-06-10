@@ -1,7 +1,6 @@
 package br.com.ifinance.dao;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,8 +11,13 @@ public class ReceitaDAO {
 	private Scanner entrada = new Scanner(System.in);
 	List<Receita> receitas;
 
-	public ReceitaDAO() {
-		receitas = new ArrayList<Receita>();
+	@SuppressWarnings("unchecked")
+	public ReceitaDAO() throws NullPointerException {
+		try {
+			receitas = (List<Receita>) PersistenciaDAO.ler("receitas.txt");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	/**
@@ -23,10 +27,8 @@ public class ReceitaDAO {
 	 * @param nenhum
 	 * @return lista de objetos requisitada
 	 */
-	@SuppressWarnings("unchecked")
-	public void addReceita() throws IOException, ClassNotFoundException {
+	public void addReceita(List<Receita> receitas) throws IOException, ClassNotFoundException {
 		Receita r = new Receita();
-		receitas = (List<Receita>) PersistenciaDAO.ler("receitas.txt");
 
 		System.out.print("Digite a descrição da receita:");
 		r.setDescricao(entrada.nextLine());
@@ -34,18 +36,8 @@ public class ReceitaDAO {
 		System.out.print("Digite a data de vencimento no formato dd/mm/aaaa:");
 		r.setDataVencimento(entrada.next());
 
-		System.out.println("Digite o valor:");
+		System.out.println("Digite o valor nominal:");
 		r.setValorNominal(entrada.nextDouble());
-
-		System.out.println("Receita recebida 0(Não) ou 1(Sim):");
-		r.setBaixado(entrada.nextInt());
-
-		System.out.println("Digite o valor recebido:");
-		r.setValorRecebido(entrada.nextDouble());
-
-		System.out
-				.println("Digite a data de recebimento no formato dd/mm/aaaa:");
-		r.setDataRecebimento(entrada.next());
 
 		receitas.add(r);
 
@@ -64,10 +56,7 @@ public class ReceitaDAO {
 	 * @param nenhum
 	 * @return lista de objetos requisitada
 	 */
-	@SuppressWarnings("unchecked")
 	public void lerReceitas() throws ClassNotFoundException, IOException {
-		List<Receita> receitas = (List<Receita>) PersistenciaDAO
-				.ler("receitas.txt");
 		System.out.println("LISTA DE RECEITAS\n");
 		System.out.println("-----------------");
 		for (int i = 0; i < receitas.size(); i++) {
@@ -85,14 +74,11 @@ public class ReceitaDAO {
 		}
 	}
 
-	@SuppressWarnings({ "unchecked" })
-	public void alteraReceita() throws ClassNotFoundException, IOException {
+	public void alterarReceita() throws ClassNotFoundException, IOException {
 		System.out.println("Digite o nome da receita para alterar");
 		String nome = entrada.nextLine();
 		if (buscarReceita(nome) != -1) {
 			int posicao = buscarReceita(nome);
-			List<Receita> receitas = (List<Receita>) PersistenciaDAO
-					.ler("receitas.txt");
 			Scanner entrada = new Scanner(System.in);
 			System.out.print("Descreva o nome da receita:");
 			String descricao = entrada.nextLine();
@@ -100,22 +86,14 @@ public class ReceitaDAO {
 			System.out.print("Digite o valor nominal:");
 			double valorNominal = entrada.nextDouble();
 			receitas.get(posicao).setValorNominal(valorNominal);
-			int baixado = entrada.nextInt();
-			receitas.get(posicao).setBaixado(baixado);
-			System.out.print("Digite o valor recebido:");
-			double valorRecebido = entrada.nextDouble();
-			receitas.get(posicao).setValorRecebido(valorRecebido);
 			entrada.close();
-			addReceita();
+			addReceita(receitas);
 			System.out.println("Receita alterada com sucesso!");
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public int buscarReceita(String nome) throws ClassNotFoundException,
 			IOException {
-		List<Receita> receitas = (List<Receita>) PersistenciaDAO
-				.ler("receitas.txt");
 		for (int i = 0; i < receitas.size(); i++) {
 			if (receitas.get(i).getDescricao().equals(nome)) {
 				return i;
@@ -125,7 +103,7 @@ public class ReceitaDAO {
 		return -1;
 	}
 
-	public void exluiDespesa() {
+	public void exluirReceita() {
 	}
 
 }

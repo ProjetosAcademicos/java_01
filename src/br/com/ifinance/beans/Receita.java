@@ -10,17 +10,18 @@ public class Receita extends Movimento {
 	public double getValorRecebido() {
 		return valorRecebido;
 	}
-
-	public void setValorRecebido(double valorRecebido) {
-		this.valorRecebido = valorRecebido;
+	
+	@Override
+	public void baixar(double valorBaixa, String dataBaixa) {
+		super.baixar(valorBaixa, dataBaixa);
+		this.dataRecebimento = dataBaixa;
+		this.valorRecebido = valorBaixa;
+		
 	}
-
+	
 	public String getDataRecebimento() {
 		return dataRecebimento;
 	}
 
-	public void setDataRecebimento(String date) {
-		this.dataRecebimento = date;
-	}
 
 }

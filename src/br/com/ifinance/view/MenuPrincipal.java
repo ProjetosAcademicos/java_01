@@ -2,17 +2,25 @@ package br.com.ifinance.view;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
+import br.com.ifinance.beans.Receita;
+import br.com.ifinance.dao.PersistenciaDAO;
 import br.com.ifinance.dao.ReceitaDAO;
 
 public class MenuPrincipal {
 
 	private Scanner entrada = new Scanner(System.in);
+	List<Receita> receitas;
 	private int opcao;
 
+	@SuppressWarnings("unchecked")
 	public MenuPrincipal() {
-
+		try {
+			receitas = (List<Receita>) PersistenciaDAO.ler("receitas.txt");
+		} catch (Exception e) {
+		}
 	}
 
 	public void Tela() throws ClassNotFoundException, IOException {
@@ -76,16 +84,31 @@ public class MenuPrincipal {
 			opcao = lerInteiro();
 			switch (opcao) {
 			case 1:
-				receitaDAO.addReceita();
+				System.out.println("Opção 1 - Cadastrar nova receita");
+				Receita r = new Receita();
+
+				System.out.print("Digite a descrição da receita:");
+				r.setDescricao(entrada.nextLine());
+
+				System.out
+						.print("Digite a data de vencimento no formato dd/mm/aaaa:");
+				r.setDataVencimento(entrada.next());
+
+				System.out.println("Digite o valor nominal:");
+				r.setValorNominal(entrada.nextDouble());
+
+				receitas.add(r);
+
+				receitaDAO.addReceita(receitas);
 				break;
 			case 2:
 				receitaDAO.lerReceitas();
 				break;
 			case 3:
-				receitaDAO.alteraReceita();
+				receitaDAO.alterarReceita();
 				break;
 			case 4:
-				receitaDAO.exluiDespesa();
+				receitaDAO.exluirReceita();
 				break;
 			case 5:
 				Tela();
