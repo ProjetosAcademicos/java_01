@@ -45,7 +45,7 @@ public class PersistenciaDAO {
 	 */
 	public static Object ler(String caminho) {
 
-		Object objeto = new Object();
+		Object objeto = null;
 
 		try {
 			FileInputStream restFile = new FileInputStream(caminho);
@@ -54,7 +54,7 @@ public class PersistenciaDAO {
 			objeto = (Object) stream.readObject();
 			stream.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
 		}
 		return objeto;
 	}

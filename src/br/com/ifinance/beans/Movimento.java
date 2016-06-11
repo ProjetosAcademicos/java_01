@@ -2,22 +2,49 @@ package br.com.ifinance.beans;
 
 import java.io.Serializable;
 
-public class Movimento implements Serializable {
+public class Movimento implements Serializable, Comparable<Movimento> {
 
 	private static final long serialVersionUID = 238784396833733304L;
-	
+
 	private int id;
 	private String descricao;
 	private String dataVencimento;
 	private double valorNominal;
-	private int baixado;
+	private int baixado = 0;
+
+	public int compareTo(Movimento comp) {
+		if (this.id < comp.id) {
+			return -1;
+		}
+		if (this.id > comp.id) {
+			return 1;
+		}
+		return 0;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getId() {
 		return id;
 	}
-	
+
 	public int getBaixado() {
 		return baixado;
+	}
+
+	public String getBaixadoSTR() {
+		String status;
+		switch (this.baixado) {
+		case 0:
+			status = "PENDENTE";
+		case 1:
+			status = "BAIXADO";
+		default:
+			status = "N/A";
+		}
+		return status;
 	}
 
 	public void baixar(double valorBaixa, String dataBaixa) {

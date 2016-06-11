@@ -1,22 +1,22 @@
 package br.com.ifinance.dao;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 import br.com.ifinance.beans.Receita;
 
 public class ReceitaDAO {
 
-	private Scanner entrada = new Scanner(System.in);
-	List<Receita> receitas;
+	private List<Receita> receitas;
 
 	@SuppressWarnings("unchecked")
 	public ReceitaDAO() throws NullPointerException {
 		try {
 			receitas = (List<Receita>) PersistenciaDAO.ler("receitas.txt");
-		} catch (Exception e) {
-			// TODO: handle exception
+
+		} catch (NullPointerException e) {
 		}
 	}
 
@@ -27,26 +27,34 @@ public class ReceitaDAO {
 	 * @param nenhum
 	 * @return lista de objetos requisitada
 	 */
-	public void addReceita(List<Receita> receitas) throws IOException, ClassNotFoundException {
-		Receita r = new Receita();
+	public void addReceita(Receita r) throws IOException,
+			ClassNotFoundException {
+		if (receitas == null) {
+			receitas = new ArrayList<Receita>();
+		}
+		try {
+			r.setId(Collections.max(receitas).getId() + 1);
 
-		System.out.print("Digite a descrição da receita:");
-		r.setDescricao(entrada.nextLine());
-
-		System.out.print("Digite a data de vencimento no formato dd/mm/aaaa:");
-		r.setDataVencimento(entrada.next());
-
-		System.out.println("Digite o valor nominal:");
-		r.setValorNominal(entrada.nextDouble());
-
+		} catch (Exception e) {
+			r.setId(1);
+		}
 		receitas.add(r);
-
 		try {
 			PersistenciaDAO.salvar(receitas, "receitas.txt");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Erro incluindo a receita.");
 		}
 
+	}
+
+	public List<Receita> listarReceitas() {
+		return receitas;
+	}
+
+	public Receita procurar(String descricao) {
+		return receitas.stream()
+				.filter(obj -> obj.getDescricao().equals(descricao))
+				.findFirst().orElse(null);
 	}
 
 	/**
@@ -56,40 +64,10 @@ public class ReceitaDAO {
 	 * @param nenhum
 	 * @return lista de objetos requisitada
 	 */
-	public void lerReceitas() throws ClassNotFoundException, IOException {
-		System.out.println("LISTA DE RECEITAS\n");
-		System.out.println("-----------------");
-		for (int i = 0; i < receitas.size(); i++) {
-			System.out.println("Descrição: " + receitas.get(i).getDescricao());
-			System.out.println("Vecimento: "
-					+ receitas.get(i).getDataVencimento());
-			System.out.println("Valor inicial: "
-					+ receitas.get(i).getValorNominal());
-			System.out.println("Situação: " + receitas.get(i).getBaixado());
-			System.out.println("Valor recebido: "
-					+ receitas.get(i).getValorRecebido());
-			System.out.println("Data de recebimento: "
-					+ receitas.get(i).getDataRecebimento());
-			System.out.println("-----------------");
-		}
-	}
 
-	public void alterarReceita() throws ClassNotFoundException, IOException {
-		System.out.println("Digite o nome da receita para alterar");
-		String nome = entrada.nextLine();
-		if (buscarReceita(nome) != -1) {
-			int posicao = buscarReceita(nome);
-			Scanner entrada = new Scanner(System.in);
-			System.out.print("Descreva o nome da receita:");
-			String descricao = entrada.nextLine();
-			receitas.get(posicao).setDescricao(descricao);
-			System.out.print("Digite o valor nominal:");
-			double valorNominal = entrada.nextDouble();
-			receitas.get(posicao).setValorNominal(valorNominal);
-			entrada.close();
-			addReceita(receitas);
-			System.out.println("Receita alterada com sucesso!");
-		}
+	public void alterarReceita(Receita receita) throws ClassNotFoundException,
+			IOException {
+		
 	}
 
 	public int buscarReceita(String nome) throws ClassNotFoundException,
@@ -103,7 +81,8 @@ public class ReceitaDAO {
 		return -1;
 	}
 
-	public void exluirReceita() {
+	public void exluirReceita(String nome) {
+
 	}
 
 }

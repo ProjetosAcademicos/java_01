@@ -2,7 +2,7 @@ package br.com.ifinance.beans;
 
 import java.io.Serializable;
 
-abstract class Pessoa implements Serializable {
+public abstract class Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 20160604L;
 

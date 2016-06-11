@@ -6,25 +6,22 @@ import java.util.List;
 import java.util.Scanner;
 
 import br.com.ifinance.beans.Receita;
-import br.com.ifinance.dao.PersistenciaDAO;
 import br.com.ifinance.dao.ReceitaDAO;
 
 public class MenuPrincipal {
 
-	private Scanner entrada = new Scanner(System.in);
-	List<Receita> receitas;
 	private int opcao;
+	Scanner entrada;
+	Receita r = new Receita();
+	ReceitaDAO receitaDAO;
 
-	@SuppressWarnings("unchecked")
-	public MenuPrincipal() {
-		try {
-			receitas = (List<Receita>) PersistenciaDAO.ler("receitas.txt");
-		} catch (Exception e) {
-		}
+	public MenuPrincipal() throws ClassNotFoundException, IOException {
+		entrada = new Scanner(System.in);
+		r = new Receita();
+		receitaDAO = new ReceitaDAO();
 	}
 
 	public void Tela() throws ClassNotFoundException, IOException {
-
 		do {
 			System.out.println("+----------------------------------+");
 			System.out.println("|      Bem vindo ao iFinance       |");
@@ -69,7 +66,6 @@ public class MenuPrincipal {
 	}
 
 	public void moduloReceita() throws ClassNotFoundException, IOException {
-		ReceitaDAO receitaDAO = new ReceitaDAO();
 		do {
 			System.out.println("+----------------------------------+");
 			System.out.println("|          Módulo Receita          |");
@@ -78,50 +74,98 @@ public class MenuPrincipal {
 			System.out.println("| 2 - Exibir receitas              |");
 			System.out.println("| 3 - Alterar uma receita          |");
 			System.out.println("| 4 - Excluir uma receita          |");
-			System.out.println("| 5 - Voltar                       |");
+			System.out.println("| 5 - Realizar baixa               |");
+			System.out.println("| 6 - Voltar                       |");
 			System.out.println("+----------------------------------+");
 			System.out.print("Digite a opção escolhida:");
 			opcao = lerInteiro();
+
 			switch (opcao) {
 			case 1:
-				System.out.println("Opção 1 - Cadastrar nova receita");
-				Receita r = new Receita();
-
-				System.out.print("Digite a descrição da receita:");
-				r.setDescricao(entrada.nextLine());
-
-				System.out
-						.print("Digite a data de vencimento no formato dd/mm/aaaa:");
+				System.out.println("Qual o nome da receita?");
+				r.setDescricao(entrada.next());
+				System.out.println("Qual data de vencimento (dd/mm/aaaa)?");
 				r.setDataVencimento(entrada.next());
-
-				System.out.println("Digite o valor nominal:");
+				System.out.println("Qual o valor nominal?");
 				r.setValorNominal(entrada.nextDouble());
-
-				receitas.add(r);
-
-				receitaDAO.addReceita(receitas);
+				receitaDAO.addReceita(r);
 				break;
 			case 2:
-				receitaDAO.lerReceitas();
+				List<Receita> receitas = receitaDAO.listarReceitas();
+				if (receitas.isEmpty()) {
+					System.err.println("Nao existem receitas cadastradas!");
+				} else {
+					for (Receita receita : receitas) {
+						System.out.println(receita.toString());
+					}
+				}
 				break;
 			case 3:
-				receitaDAO.alterarReceita();
+
 				break;
 			case 4:
-				receitaDAO.exluirReceita();
+
 				break;
 			case 5:
+
+				break;
+			case 6:
 				Tela();
 				break;
 			default:
-				System.err.println("Opcao invalida. Tente novamente:");
+				System.out.println("Opcao invalida. Tente novamente:");
 				break;
 			}
 		} while (opcao != 5);
+		entrada.close();
 	}
 
-	public void moduloDespesa() {
+	public void moduloDespesa() throws ClassNotFoundException, IOException {
+		do {
+			System.out.println("+----------------------------------+");
+			System.out.println("|          Módulo Despesa          |");
+			System.out.println("|----------------------------------|");
+			System.out.println("| 1 - Cadastrar nova despesa       |");
+			System.out.println("| 2 - Exibir despesas              |");
+			System.out.println("| 3 - Alterar uma despesa          |");
+			System.out.println("| 4 - Excluir uma despesa          |");
+			System.out.println("| 5 - Realizar baixa               |");
+			System.out.println("| 6 - Voltar                       |");
+			System.out.println("+----------------------------------+");
+			System.out.print("Digite a opção escolhida:");
+			opcao = lerInteiro();
 
+			switch (opcao) {
+			case 1:
+				System.out.println("Qual o nome da despesa?");
+				r.setDescricao(entrada.next());
+				System.out.println("Qual data de vencimento (dd/mm/aaaa)?");
+				r.setDataVencimento(entrada.next());
+				System.out.println("Qual o valor nominal?");
+				r.setValorNominal(entrada.nextDouble());
+				receitaDAO.addReceita(r);
+				break;
+			case 2:
+
+				break;
+			case 3:
+
+				break;
+			case 4:
+
+				break;
+			case 5:
+
+				break;
+			case 6:
+				Tela();
+				break;
+			default:
+				System.out.println("Opcao invalida. Tente novamente:");
+				break;
+			}
+		} while (opcao != 5);
+		entrada.close();
 	}
 
 	public int lerInteiro() {

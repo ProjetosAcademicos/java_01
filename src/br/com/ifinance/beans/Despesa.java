@@ -8,6 +8,7 @@ public class Despesa extends Movimento implements Serializable {
 	private String documento;
 	private String dataPgto;
 	private double valorPago;
+	private Pessoa fornecedor;
 
 	public String getDocumento() {
 		return documento;
@@ -21,16 +22,23 @@ public class Despesa extends Movimento implements Serializable {
 		return dataPgto;
 	}
 
-	public void setDataPgto(String dataPgto) {
-		this.dataPgto = dataPgto;
-	}
-
 	public double getValorPago() {
 		return valorPago;
 	}
 
-	public void setValorPago(double valorPago) {
-		this.valorPago = valorPago;
+	public Pessoa getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Pessoa fornecedor) {
+		this.fornecedor = fornecedor;
+	}
+
+	@Override
+	public void baixar(double valorBaixa, String dataBaixa) {
+		super.baixar(valorBaixa, dataBaixa);
+		this.valorPago = valorBaixa;
+		this.dataPgto = dataBaixa;
 	}
 
 }
