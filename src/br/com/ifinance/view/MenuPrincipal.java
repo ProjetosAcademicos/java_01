@@ -28,13 +28,13 @@ public class MenuPrincipal {
 			System.out.println("+----------------------------------+");
 			System.out.println("|      Bem vindo ao iFinance       |");
 			System.out.println("|----------------------------------|");
-			System.out.println("| 1 - Módulo Pessoa Física         |");
-			System.out.println("| 2 - Módulo Pessoa Jurídica       |");
-			System.out.println("| 3 - Módulo Receita               |");
-			System.out.println("| 4 - Módulo Despesa               |");
+			System.out.println("| 1 - Modulo Pessoa Fisica         |");
+			System.out.println("| 2 - Modulo Pessoa Juridica       |");
+			System.out.println("| 3 - Modulo Receita               |");
+			System.out.println("| 4 - Modulo Despesa               |");
 			System.out.println("| 5 - Sair                         |");
 			System.out.println("+----------------------------------+");
-			System.out.print("Digite a opção escolhida:");
+			System.out.print("Digite a opcao escolhida:");
 			opcao = lerInteiro();
 			switch (opcao) {
 			case 1:
@@ -70,7 +70,7 @@ public class MenuPrincipal {
 	public void moduloReceita() throws ClassNotFoundException, IOException {
 		do {
 			System.out.println("+----------------------------------+");
-			System.out.println("|          Módulo Receita          |");
+			System.out.println("|          Modulo Receita          |");
 			System.out.println("|----------------------------------|");
 			System.out.println("| 1 - Cadastrar nova receita       |");
 			System.out.println("| 2 - Exibir receitas              |");
@@ -79,7 +79,7 @@ public class MenuPrincipal {
 			System.out.println("| 5 - Realizar baixa               |");
 			System.out.println("| 6 - Voltar                       |");
 			System.out.println("+----------------------------------+");
-			System.out.print("Digite a opção escolhida:");
+			System.out.print("Digite a opcao escolhida:");
 			opcao = lerInteiro();
 
 			switch (opcao) {
@@ -122,11 +122,11 @@ public class MenuPrincipal {
 				String nome = entrada.next();
 				r = receitaDAO.procurar(nome);
 				if (r != null) {
-					System.out.println("Descrição atual <" + r.getDescricao()
+					System.out.println("Descricao atual <" + r.getDescricao()
 							+ ">, deseja alterar: S ou N?");
 					resposta = entrada.next();
 					if (resposta.equals("S")) {
-						System.out.println("Qual a nova descrição?");
+						System.out.println("Qual a nova descricao?");
 						r.setDescricao(entrada.next());
 					}
 					System.out.println("Vencimento atual <"
@@ -176,7 +176,7 @@ public class MenuPrincipal {
 					}
 				} else {
 					System.out
-							.println("Receita não encontrada, tente novamente!");
+							.println("Receita nao encontrada, tente novamente!");
 				}
 				break;
 			case 5:
@@ -196,7 +196,7 @@ public class MenuPrincipal {
 	public void moduloDespesa() throws ClassNotFoundException, IOException {
 		do {
 			System.out.println("+----------------------------------+");
-			System.out.println("|          Módulo Despesa          |");
+			System.out.println("|          Modulo Despesa          |");
 			System.out.println("|----------------------------------|");
 			System.out.println("| 1 - Cadastrar nova despesa       |");
 			System.out.println("| 2 - Exibir despesas              |");
@@ -205,7 +205,7 @@ public class MenuPrincipal {
 			System.out.println("| 5 - Realizar baixa               |");
 			System.out.println("| 6 - Voltar                       |");
 			System.out.println("+----------------------------------+");
-			System.out.print("Digite a opção escolhida:");
+			System.out.print("Digite a opcao escolhida:");
 			opcao = lerInteiro();
 
 			switch (opcao) {
@@ -253,5 +253,4 @@ public class MenuPrincipal {
 		}
 		return valor;
 	}
-
 }
