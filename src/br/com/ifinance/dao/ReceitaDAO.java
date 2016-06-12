@@ -1,5 +1,6 @@
 package br.com.ifinance.dao;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,6 +58,11 @@ public class ReceitaDAO {
 				.findFirst().orElse(null);
 	}
 
+	public Receita procurar(int id) {
+		return receitas.stream().filter(obj -> obj.getId() == id).findFirst()
+				.orElse(null);
+	}
+
 	/**
 	 * Metodo para recuperar a lista de receitas do arquivo receitas.txt para
 	 * memoria
@@ -65,24 +71,35 @@ public class ReceitaDAO {
 	 * @return lista de objetos requisitada
 	 */
 
-	public void alterarReceita(Receita receita) throws ClassNotFoundException,
+	public void alterarReceita(Receita receita) throws FileNotFoundException,
 			IOException {
-		
-	}
-
-	public int buscarReceita(String nome) throws ClassNotFoundException,
-			IOException {
-		for (int i = 0; i < receitas.size(); i++) {
-			if (receitas.get(i).getDescricao().equals(nome)) {
-				return i;
+		receitas.forEach(obj -> {
+			if (obj.getId() == receita.getId()) {
+				obj = receita;
 			}
+		});
+
+		try {
+			PersistenciaDAO.salvar(receitas, "receitas.txt");
+		} catch (FileNotFoundException e) {
+			System.out.println("Nao foi possivel alterar a receita.");
 		}
-		System.out.println("Receita não encontrada");
-		return -1;
 	}
 
-	public void exluirReceita(String nome) {
+	public void excluirReceita(Receita receita) throws FileNotFoundException,
+			IOException {
+		receitas.forEach(obj -> {
+			if (obj.equals(receita)) {
+				receitas.remove(obj);
+			}
+		});
 
+		try {
+			PersistenciaDAO.salvar(receitas, "receitas.txt");
+		} catch (FileNotFoundException e) {
+			System.out
+					.println("Nao foi possivel excluir a receita.");
+		}
 	}
 
 }

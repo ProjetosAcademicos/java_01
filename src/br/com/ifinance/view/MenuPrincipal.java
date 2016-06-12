@@ -14,6 +14,8 @@ public class MenuPrincipal {
 	Scanner entrada;
 	Receita r = new Receita();
 	ReceitaDAO receitaDAO;
+	String resposta = "";
+	List<Receita> receitas;
 
 	public MenuPrincipal() throws ClassNotFoundException, IOException {
 		entrada = new Scanner(System.in);
@@ -82,29 +84,100 @@ public class MenuPrincipal {
 
 			switch (opcao) {
 			case 1:
+				entrada.nextLine();
 				System.out.println("Qual o nome da receita?");
-				r.setDescricao(entrada.next());
+				r.setDescricao(entrada.nextLine());
 				System.out.println("Qual data de vencimento (dd/mm/aaaa)?");
-				r.setDataVencimento(entrada.next());
+				r.setDataVencimento(entrada.nextLine());
 				System.out.println("Qual o valor nominal?");
 				r.setValorNominal(entrada.nextDouble());
 				receitaDAO.addReceita(r);
 				break;
 			case 2:
-				List<Receita> receitas = receitaDAO.listarReceitas();
+				receitas = receitaDAO.listarReceitas();
 				if (receitas.isEmpty()) {
 					System.err.println("Nao existem receitas cadastradas!");
 				} else {
+					System.out.println("Id\t" + "Descricao\t" + "Vencimento\t"
+							+ "Valor\t\t" + "Status\t" + "Valor recebido\t"
+							+ "Data recebimento");
 					for (Receita receita : receitas) {
-						System.out.println(receita.toString());
+						System.out.println(receita.toStringFormatada());
 					}
 				}
 				break;
 			case 3:
-
+/*				receitas = receitaDAO.listarReceitas();
+				if (receitas.isEmpty()) {
+					System.out.println("Nao existem receitas cadastradas!\n");
+				} else {
+					System.out.println("Id\t" + "Descricao\t" + "Vencimento\t"
+							+ "Valor\t\t" + "Status\t" + "Valor recebido\t"
+							+ "Data recebimento");
+					for (Receita receita : receitas) {
+						System.out.println(receita.toStringFormatada());
+					}
+				}
+*/				System.out.println("Qual o nome da receita para alterar?");
+				String nome = entrada.next();
+				r = receitaDAO.procurar(nome);
+				if (r != null) {
+					System.out.println("Descrição atual <" + r.getDescricao()
+							+ ">, deseja alterar: S ou N?");
+					resposta = entrada.next();
+					if (resposta.equals("S")) {
+						System.out.println("Qual a nova descrição?");
+						r.setDescricao(entrada.next());
+					}
+					System.out.println("Vencimento atual <"
+							+ r.getDataVencimento()
+							+ ">, deseja alterar: S ou N?");
+					resposta = entrada.next();
+					if (resposta.equals("S")) {
+						System.out.println("Qual o novo vencimento?");
+						r.setDataVencimento(entrada.next());
+					}
+					System.out.println("Valor atual <" + r.getValorNominal()
+							+ ">, deseja alterar: S ou N?");
+					resposta = entrada.next();
+					if (resposta.equals("S")) {
+						System.out.println("Qual o novo vencimento?");
+						r.setDataVencimento(entrada.next());
+					}
+					try {
+						receitaDAO.alterarReceita(r);						
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+				} else {
+					System.out
+							.println("Receita não encontrada, tente novamente!");
+				}
 				break;
 			case 4:
-
+				if (receitaDAO.listarReceitas().isEmpty()) {
+					System.out.println("Nao existem receitas cadastradas!\n");
+				} else {
+					System.out.println("Id\t" + "Descricao\t" + "Vencimento\t"
+							+ "Valor\t\t" + "Status\t" + "Valor recebido\t"
+							+ "Data recebimento");
+					for (Receita receita : receitas) {
+						System.out.println(receita.toStringFormatada());
+					}
+				}
+				System.out.println("Qual o id da receita a excluir?");
+				int id = entrada.nextInt();
+				r = receitaDAO.procurar(id);
+				if (r != null) {
+					try {
+						receitaDAO.excluirReceita(r);
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+				} else {
+					System.out
+							.println("Receita não encontrada, tente novamente!");
+				}
 				break;
 			case 5:
 

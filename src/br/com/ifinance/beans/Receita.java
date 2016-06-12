@@ -1,6 +1,5 @@
 package br.com.ifinance.beans;
 
-
 public class Receita extends Movimento {
 
 	private static final long serialVersionUID = -3582439682901639327L;
@@ -11,14 +10,14 @@ public class Receita extends Movimento {
 	public double getValorRecebido() {
 		return valorRecebido;
 	}
-	
+
 	@Override
 	public void baixar(double valorBaixa, String dataBaixa) {
 		super.baixar(valorBaixa, dataBaixa);
 		this.dataRecebimento = dataBaixa;
 		this.valorRecebido = valorBaixa;
 	}
-	
+
 	public String getDataRecebimento() {
 		return dataRecebimento;
 	}
@@ -34,13 +33,23 @@ public class Receita extends Movimento {
 	@Override
 	public String toString() {
 		StringBuilder strUtil = new StringBuilder();
-		strUtil.append("Descrição: " + getDescricao()+"\n"); 
-		strUtil.append("Vencimento: " + getDataVencimento()+"\n");
-		strUtil.append("Valor: " + getValorNominal()+"\n");
-		strUtil.append("Baixado: " + getBaixado()+"\n");
-		strUtil.append("Valor recebido: " + getValorRecebido()+"\n");
-		strUtil.append("Data de recebimento: " + getDataRecebimento()+"\n");
-		
+		strUtil.append("Id: " + getId() + "\n");
+		strUtil.append("Descrição: " + getDescricao() + "\n");
+		strUtil.append("Vencimento: " + getDataVencimento() + "\n");
+		strUtil.append("Valor: " + getValorNominal() + "\n");
+		strUtil.append("Baixado: " + getBaixado() + "\n");
+		strUtil.append("Valor recebido: " + getValorRecebido() + "\n");
+		strUtil.append("Data de recebimento: " + getDataRecebimento() + "\n");
+
+		return strUtil.toString();
+	}
+
+	public String toStringFormatada() {
+		StringBuilder strUtil = new StringBuilder();
+		strUtil.append(getId() + "\t" + getDescricao() + "\t\t" + getDataVencimento() + "\t"
+				+ getValorNominal() + "\t" + getBaixadoSTR() + "\t"
+				+ getValorRecebido() + "\t" + getDataRecebimento());
+
 		return strUtil.toString();
 	}
 
