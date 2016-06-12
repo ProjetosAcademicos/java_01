@@ -88,13 +88,15 @@ public class ReceitaDAO {
 
 	public void excluirReceita(Receita receita) throws FileNotFoundException,
 			IOException {
-		receitas.forEach(obj -> {
+		/*receitas.forEach(obj -> {
 			if (obj.equals(receita)) {
 				receitas.remove(obj);
 			}
-		});
+		});*/
 
 		try {
+			int indice = receitas.indexOf(receita);
+			receitas.remove(indice);
 			PersistenciaDAO.salvar(receitas, "receitas.txt");
 		} catch (FileNotFoundException e) {
 			System.out

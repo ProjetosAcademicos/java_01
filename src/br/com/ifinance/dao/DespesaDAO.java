@@ -100,19 +100,21 @@ public class DespesaDAO {
 			PersistenciaDAO.salvar(listaDespesas, "despesa.txt");
 		} catch (FileNotFoundException e) {
 			System.out
-					.println("Erro alterando despesa. Arquivo n�o encontrado");
+					.println("Erro alterando despesa. Arquivo nao encontrado");
 		}
 	}
 
 	public void excluirDespesa(Despesa despesa) throws FileNotFoundException,
 			IOException {
-		listaDespesas.forEach(obj -> {
+		/*listaDespesas.forEach(obj -> {
 			if (obj.equals(despesa)) {
 				listaDespesas.remove(obj);
 			}
-		});
+		});*/
 
 		try {
+			int indice = listaDespesas.indexOf(despesa);
+			listaDespesas.remove(indice);
 			PersistenciaDAO.salvar(listaDespesas, "despesa.txt");
 		} catch (FileNotFoundException e) {
 			System.out

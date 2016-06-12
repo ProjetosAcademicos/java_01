@@ -9,12 +9,13 @@ import br.com.ifinance.beans.PessoaJuridica;
 
 public class PessoaJuridicaDAO {
 
-	private List<PessoaJuridica> pessoas;
+	private List<PessoaJuridica> pjuridicas;
 
 	@SuppressWarnings("unchecked")
 	public PessoaJuridicaDAO() throws NullPointerException {
 		try {
-			pessoas = (List<PessoaJuridica>) PersistenciaDAO.ler("PessoaJuridicas.txt");
+			pjuridicas = (List<PessoaJuridica>) PersistenciaDAO
+					.ler("PessoaJuridicas.txt");
 
 		} catch (NullPointerException e) {
 		}
@@ -29,19 +30,19 @@ public class PessoaJuridicaDAO {
 	 */
 	public void addPessoaJuridica(PessoaJuridica r) throws IOException,
 			ClassNotFoundException {
-		if (pessoas == null) {
-			pessoas = new ArrayList<PessoaJuridica>();
+		if (pjuridicas == null) {
+			pjuridicas = new ArrayList<PessoaJuridica>();
 		}
 		try {
-			r.setId(pessoas.size()+1);
-			//r.setId(Collections.max(pessoas).getId() + 1);
+			r.setId(pjuridicas.size() + 1);
+			// r.setId(Collections.max(pessoas).getId() + 1);
 
 		} catch (Exception e) {
 			r.setId(1);
 		}
-		pessoas.add(r);
+		pjuridicas.add(r);
 		try {
-			PersistenciaDAO.salvar(pessoas, "PessoaJuridicas.txt");
+			PersistenciaDAO.salvar(pjuridicas, "PessoaJuridicas.txt");
 		} catch (Exception e) {
 			System.out.println("Erro incluindo a PessoaJuridica.");
 		}
@@ -49,56 +50,56 @@ public class PessoaJuridicaDAO {
 	}
 
 	public List<PessoaJuridica> listarPessoaJuridicas() {
-		return pessoas;
+		return pjuridicas;
 	}
 
 	public PessoaJuridica procurar(String descricao) {
-		return pessoas.stream()
-				.filter(obj -> obj.getCnpj().equals(descricao))
-				.findFirst().orElse(null);
+		return pjuridicas.stream()
+				.filter(obj -> obj.getCnpj().equals(descricao)).findFirst()
+				.orElse(null);
 	}
 
 	public PessoaJuridica procurar(int id) {
-		return pessoas.stream().filter(obj -> obj.getId() == id).findFirst()
+		return pjuridicas.stream().filter(obj -> obj.getId() == id).findFirst()
 				.orElse(null);
 	}
 
 	/**
-	 * Metodo para recuperar a lista de PessoaJuridicas do arquivo PessoaJuridicas.txt para
-	 * memoria
+	 * Metodo para recuperar a lista de PessoaJuridicas do arquivo
+	 * PessoaJuridicas.txt para memoria
 	 * 
 	 * @param nenhum
 	 * @return lista de objetos requisitada
 	 */
 
-	public void alterarPessoaJuridica(PessoaJuridica PessoaJuridica) throws FileNotFoundException,
-			IOException {
-		pessoas.forEach(obj -> {
+	public void alterarPessoaJuridica(PessoaJuridica PessoaJuridica)
+			throws FileNotFoundException, IOException {
+		pjuridicas.forEach(obj -> {
 			if (obj.getId() == PessoaJuridica.getId()) {
 				obj = PessoaJuridica;
 			}
 		});
 
 		try {
-			PersistenciaDAO.salvar(pessoas, "PessoaJuridicas.txt");
+			PersistenciaDAO.salvar(pjuridicas, "PessoaJuridicas.txt");
 		} catch (FileNotFoundException e) {
 			System.out.println("Nao foi possivel alterar a PessoaJuridica.");
 		}
 	}
 
-	public void excluirPessoaJuridica(PessoaJuridica PessoaJuridica) throws FileNotFoundException,
-			IOException {
-		pessoas.forEach(obj -> {
-			if (obj.equals(PessoaJuridica)) {
-				pessoas.remove(obj);
-			}
-		});
+	public void excluirPessoaJuridica(PessoaJuridica PessoaJuridica)
+			throws FileNotFoundException, IOException {
+		/*
+		 * pjuridicas.forEach(obj -> { if (obj.equals(PessoaJuridica)) {
+		 * pjuridicas.remove(obj); } });
+		 */
 
 		try {
-			PersistenciaDAO.salvar(pessoas, "PessoaJuridicas.txt");
+			int indice = pjuridicas.indexOf(PessoaJuridica);
+			pjuridicas.remove(indice);
+			PersistenciaDAO.salvar(pjuridicas, "PessoaJuridicas.txt");
 		} catch (FileNotFoundException e) {
-			System.out
-					.println("Nao foi possivel excluir a PessoaJuridica.");
+			System.out.println("Nao foi possivel excluir a PessoaJuridica.");
 		}
 	}
 
