@@ -8,6 +8,7 @@ import java.util.Scanner;
 import br.com.ifinance.beans.PessoaFisica;
 import br.com.ifinance.beans.PessoaJuridica;
 import br.com.ifinance.beans.Receita;
+import br.com.ifinance.dao.DespesaDAO;
 import br.com.ifinance.dao.PessoaFisicaDAO;
 import br.com.ifinance.dao.PessoaJuridicaDAO;
 import br.com.ifinance.dao.ReceitaDAO;
@@ -19,8 +20,10 @@ public class MenuPrincipal {
 	Receita r = new Receita();
 	PessoaFisica pf = new PessoaFisica();
 	PessoaJuridica pj = new PessoaJuridica();
+	int id = -1;
 	
 	ReceitaDAO receitaDAO;
+	DespesaDAO despesaDAO;
 	PessoaFisicaDAO pessoaFisicaDAO;
 	PessoaJuridicaDAO pessoaJuridicaDAO;
 	
@@ -34,6 +37,7 @@ public class MenuPrincipal {
 		entrada = new Scanner(System.in);
 		r = new Receita();
 		receitaDAO = new ReceitaDAO();
+		despesaDAO = new DespesaDAO();
 		pessoaFisicaDAO = new PessoaFisicaDAO();
 		pessoaJuridicaDAO = new PessoaJuridicaDAO();
 	}
@@ -129,9 +133,9 @@ public class MenuPrincipal {
 					}
 					break;
 				case 3:
-					System.out.println("Qual o nome da pessoa para alterar?");
-					String nomePessoa = entrada.next();
-					pf = pessoaFisicaDAO.procurar(nomePessoa);
+					System.out.println("Qual o id da pessoa para alterar?");
+					id = entrada.nextInt();
+					pf = pessoaFisicaDAO.procurar(id);
 					if (pf != null) {
 						System.out.println("Nome atual <" + pf.getNome()
 								+ ">, deseja alterar: S ou N?");
@@ -246,9 +250,9 @@ public class MenuPrincipal {
 						System.out.println(receita.toStringFormatada());
 					}
 				}
-*/				System.out.println("Qual o nome da receita para alterar?");
-				String nome = entrada.next();
-				r = receitaDAO.procurar(nome);
+*/				System.out.println("Qual o id da receita para alterar?");
+				id = entrada.nextInt();
+				r = receitaDAO.procurar(id);
 				if (r != null) {
 					System.out.println("Descricao atual <" + r.getDescricao()
 							+ ">, deseja alterar: S ou N?");
