@@ -123,7 +123,6 @@ public class MenuPrincipal {
 				System.out.println("Qual o cidade da pessoa?");
 				p.setCidade(entrada.nextLine());
 
-				r.setCliente(p);
 				pessoaFisicaDAO.addPessoaFisica(p);
 				break;
 			case 2:
@@ -131,7 +130,7 @@ public class MenuPrincipal {
 				if (pFisicas.isEmpty()) {
 					System.out.println("Nao existem pessoas cadastradas!");
 				} else {
-					System.out.println("ID\t" + "CPF\t\t\t" + "Nome\t");
+//					System.out.println("ID\t" + "CPF\t\t\t" + "Nome\t");
 					for (PessoaFisica pessoa : pFisicas) {
 						System.out.println(pessoa.toString());
 					}
@@ -146,9 +145,49 @@ public class MenuPrincipal {
 							+ ">, deseja alterar: S ou N?");
 					resposta = entrada.next();
 					if (resposta.equals("S")) {
+						entrada.nextLine();
 						System.out.println("Qual o novo nome?");
-						r.setDescricao(entrada.next());
+						pf.setNome(entrada.nextLine());
 					}
+
+					System.out.println("Endereco atual <" + pf.getEndereco()
+					+ ">, deseja alterar: S ou N?");
+					resposta = entrada.next();
+					if (resposta.equals("S")) {
+						entrada.nextLine();
+						System.out.println("Qual o novo endereco?");
+						pf.setEndereco(entrada.nextLine());
+					}
+					
+					System.out.println("Birro atual <" + pf.getBairro()
+					+ ">, deseja alterar: S ou N?");
+					resposta = entrada.next();
+					if (resposta.equals("S")) {
+						entrada.nextLine();
+						System.out.println("Qual o novo bairro?");
+						pf.setBairro(entrada.nextLine());
+					}
+					
+					System.out.println("Cidade atual <" + pf.getCidade()
+					+ ">, deseja alterar: S ou N?");
+					resposta = entrada.next();
+					if (resposta.equals("S")) {
+						entrada.nextLine();
+						System.out.println("Qual a nova cidade?");
+						pf.setCidade(entrada.nextLine());
+					}
+
+					
+					System.out.println("CEP atual <" + pf.getCep()
+					+ ">, deseja alterar: S ou N?");
+					resposta = entrada.next();
+					if (resposta.equals("S")) {
+						entrada.nextLine();
+						System.out.println("Qual o novo CEP?");
+						pf.setCep(entrada.nextLine());
+					}
+					
+
 					try {
 						pessoaFisicaDAO.alterarPessoaFisica(pf);
 					} catch (Exception e) {
@@ -160,7 +199,8 @@ public class MenuPrincipal {
 				}
 				break;
 			case 4:
-				if (pessoaFisicaDAO.listarPessoaFisicas().isEmpty()) {
+				pFisicas = pessoaFisicaDAO.listarPessoaFisicas();
+				if (pFisicas.isEmpty()) {
 					System.out.println("Nao existem pessoas cadastradas!\n");
 				} else {
 					System.out.println("CPF\t" + "Nome\t" + "Endereco\t"
@@ -170,6 +210,7 @@ public class MenuPrincipal {
 					}
 				}
 
+				entrada.nextLine();
 				System.out.println("Qual o CPF da pessoa fisica a excluir?");
 				String cpf = entrada.nextLine();
 				pf = pessoaFisicaDAO.procurar(cpf);
@@ -198,8 +239,154 @@ public class MenuPrincipal {
 
 	}
 
-	public void moduloPessoaJuridica() {
+	public void moduloPessoaJuridica() throws ClassNotFoundException, IOException {
+		do {
+			System.out.println("+------------------------------------+");
+			System.out.println("|       Modulo Pessoa Juridica       |");
+			System.out.println("|------------------------------------|");
+			System.out.println("| 1 - Cadastrar nova pessoa Juridica |");
+			System.out.println("| 2 - Exibir pessoas Juridicas       |");
+			System.out.println("| 3 - Alterar uma pessoa Juridica    |");
+			System.out.println("| 4 - Excluir uma pessoa Juridica    |");
+			System.out.println("| 6 - Voltar                         |");
+			System.out.println("+----------------------------------+");
+			System.out.print("Digite a opcao escolhida:");
+			opcao = lerInteiro();
 
+			switch (opcao) {
+			case 1:
+				entrada.nextLine();
+
+				System.out.println("Qual o CNPJ da pessoa?");
+				PessoaJuridica p = new PessoaJuridica(entrada.nextLine());
+
+				System.out.println("Qual o nome da pessoa?");
+				p.setNome(entrada.nextLine());
+
+				System.out.println("Qual o endereco da pessoa?");
+				p.setEndereco(entrada.nextLine());
+
+				System.out.println("Qual o bairro da pessoa?");
+				p.setBairro(entrada.nextLine());
+
+				System.out.println("Qual o CEP da pessoa?");
+				p.setCep(entrada.nextLine());
+
+				System.out.println("Qual o cidade da pessoa?");
+				p.setCidade(entrada.nextLine());
+
+				pessoaJuridicaDAO.addPessoaJuridica(p);
+				break;
+			case 2:
+				pJuridicas = pessoaJuridicaDAO.listarPessoaJuridicas();
+				if (pJuridicas.isEmpty()) {
+					System.out.println("Nao existem pessoas cadastradas!");
+				} else {
+//					System.out.println("ID\t" + "CPF\t\t\t" + "Nome\t");
+					for (PessoaJuridica pessoa : pJuridicas) {
+						System.out.println(pessoa.toString());
+					}
+				}
+				break;
+			case 3:
+				System.out.println("Qual o id da pessoa para alterar?");
+				id = entrada.nextInt();
+				pj = pessoaJuridicaDAO.procurar(id);
+				if (pj != null) {
+					System.out.println("Nome atual <" + pj.getNome()
+							+ ">, deseja alterar: S ou N?");
+					resposta = entrada.next();
+					if (resposta.equals("S")) {
+						entrada.nextLine();
+						System.out.println("Qual o novo nome?");
+						pj.setNome(entrada.nextLine());
+					}
+
+					System.out.println("Endereco atual <" + pj.getEndereco()
+					+ ">, deseja alterar: S ou N?");
+					resposta = entrada.next();
+					if (resposta.equals("S")) {
+						entrada.nextLine();
+						System.out.println("Qual o novo endereco?");
+						pj.setEndereco(entrada.nextLine());
+					}
+					
+					System.out.println("Birro atual <" + pj.getBairro()
+					+ ">, deseja alterar: S ou N?");
+					resposta = entrada.next();
+					if (resposta.equals("S")) {
+						entrada.nextLine();
+						System.out.println("Qual o novo bairro?");
+						pj.setBairro(entrada.nextLine());
+					}
+					
+					System.out.println("Cidade atual <" + pj.getCidade()
+					+ ">, deseja alterar: S ou N?");
+					resposta = entrada.next();
+					if (resposta.equals("S")) {
+						entrada.nextLine();
+						System.out.println("Qual a nova cidade?");
+						pj.setCidade(entrada.nextLine());
+					}
+
+					
+					System.out.println("CEP atual <" + pj.getCep()
+					+ ">, deseja alterar: S ou N?");
+					resposta = entrada.next();
+					if (resposta.equals("S")) {
+						entrada.nextLine();
+						System.out.println("Qual o novo CEP?");
+						pj.setCep(entrada.nextLine());
+					}
+					
+
+					try {
+						pessoaJuridicaDAO.alterarPessoaJuridica(pj);
+					} catch (Exception e) {
+						throw e;
+					}
+				} else {
+					System.out
+							.println("Pessoa nao encontrada, tente novamente!");
+				}
+				break;
+			case 4:
+				pJuridicas = pessoaJuridicaDAO.listarPessoaJuridicas();
+				if (pJuridicas.isEmpty()) {
+					System.out.println("Nao existem pessoas cadastradas!\n");
+				} else {
+					System.out.println("ID\t"+"CNPJ\t\t" + "Nome\t" );
+					for (PessoaJuridica pJur : pJuridicas) {
+						System.out.println(pJur.toStringFormatada());
+					}
+				}
+
+				entrada.nextLine();
+				System.out.println("Qual o CNPJ da pessoa juridica a excluir?");
+				String cnpj = entrada.nextLine();
+				pj = pessoaJuridicaDAO.procurar(cnpj);
+				if (pj != null) {
+					try {
+						pessoaJuridicaDAO.excluirPessoaJuridica(pj);
+					} catch (Exception e) {
+					}
+				} else {
+					System.out
+							.println("Pessoa juridica nao encontrada, tente novamente!");
+				}
+				break;
+			case 5:
+
+				break;
+			case 6:
+				Tela();
+				break;
+			default:
+				System.out.println("Opcao invalida. Tente novamente:");
+				break;
+			}
+		} while (opcao != 5);
+		entrada.close();		
 	}
 
 	public void moduloReceita() throws ClassNotFoundException, IOException {
