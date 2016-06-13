@@ -17,21 +17,20 @@ public class MenuPrincipal {
 
 	private int opcao;
 	Scanner entrada;
-	Receita r = new Receita();
-	PessoaFisica pf = new PessoaFisica();
-	PessoaJuridica pj = new PessoaJuridica();
+	Receita r;
+	PessoaFisica pf;
+	PessoaJuridica pj;
 	int id = -1;
-	
+
 	ReceitaDAO receitaDAO;
 	DespesaDAO despesaDAO;
 	PessoaFisicaDAO pessoaFisicaDAO;
 	PessoaJuridicaDAO pessoaJuridicaDAO;
-	
-	
+
 	String resposta = "";
 	List<Receita> receitas;
 	List<PessoaFisica> pFisicas;
-	List<PessoaJuridica> pJuridica;
+	List<PessoaJuridica> pJuridicas;
 
 	public MenuPrincipal() throws ClassNotFoundException, IOException {
 		entrada = new Scanner(System.in);
@@ -80,119 +79,115 @@ public class MenuPrincipal {
 
 	public void moduloPessoaFisica() throws ClassNotFoundException, IOException {
 
-			do {
-				System.out.println("+----------------------------------+");
-				System.out.println("|          Modulo PessoaFisica     |");
-				System.out.println("|----------------------------------|");
-				System.out.println("| 1 - Cadastrar nova PessoaFisica  |");
-				System.out.println("| 2 - Exibir PessoaFisicas         |");
-				System.out.println("| 3 - Alterar uma PessoaFisica     |");
-				System.out.println("| 4 - Excluir uma PessoaFisica     |");
-				System.out.println("| 5 - Realizar baixa               |");
-				System.out.println("| 6 - Voltar                       |");
-				System.out.println("+----------------------------------+");
-				System.out.print("Digite a opcao escolhida:");
-				opcao = lerInteiro();
+		do {
+			System.out.println("+----------------------------------+");
+			System.out.println("|          Modulo PessoaFisica     |");
+			System.out.println("|----------------------------------|");
+			System.out.println("| 1 - Cadastrar nova pessoa fisica |");
+			System.out.println("| 2 - Exibir pessoas fisicas       |");
+			System.out.println("| 3 - Alterar uma pessoa fisica    |");
+			System.out.println("| 4 - Excluir uma pessoa fisica    |");
+			System.out.println("| 6 - Voltar                       |");
+			System.out.println("+----------------------------------+");
+			System.out.print("Digite a opcao escolhida:");
+			opcao = lerInteiro();
 
-				switch (opcao) {
-				case 1:
-					entrada.nextLine();
-					
-					System.out.println("Qual o CPF da pessoa?");
-					PessoaFisica p = new PessoaFisica(entrada.nextLine());
-					
-					System.out.println("Qual o nome da pessoa?");
-					p.setNome(entrada.nextLine());
+			switch (opcao) {
+			case 1:
+				entrada.nextLine();
 
-					System.out.println("Qual o endereco da pessoa?");
-					p.setEndereco(entrada.nextLine());
-					
-					System.out.println("Qual o bairro da pessoa?");
-					p.setBairro(entrada.nextLine());
-					
-					System.out.println("Qual o CEP da pessoa?");
-					p.setCep(entrada.nextLine());
-					
-					System.out.println("Qual o cidade da pessoa?");
-					p.setCidade(entrada.nextLine());
-					
-					r.setCliente(p);
-					pessoaFisicaDAO.addPessoaFisica(p); 
-					break;
-				case 2:
-					pFisicas = pessoaFisicaDAO.listarPessoaFisicas();
-					if (pFisicas.isEmpty()) {
-						System.err.println("Nao existem pessoas cadastradas!");
-					} else {
-						System.out.println("Id\t" + "Descricao\t" + "Vencimento\t"
-								+ "Valor\t\t" + "Status\t" + "Valor recebido\t"
-								+ "Data recebimento");
-						for (PessoaFisica pessoa : pFisicas) {
-							System.out.println(pessoa.toString());
-						}
-					}
-					break;
-				case 3:
-					System.out.println("Qual o id da pessoa para alterar?");
-					id = entrada.nextInt();
-					pf = pessoaFisicaDAO.procurar(id);
-					if (pf != null) {
-						System.out.println("Nome atual <" + pf.getNome()
-								+ ">, deseja alterar: S ou N?");
-						resposta = entrada.next();
-						if (resposta.equals("S")) {
-							System.out.println("Qual o novo nome?");
-							r.setDescricao(entrada.next());
-						}
-						try {
-							pessoaFisicaDAO.alterarPessoaFisica(pf);						
-						} catch (Exception e) {
-							throw e;
-						}
-					} else {
-						System.out
-								.println("Pessoa nao encontrada, tente novamente!");
-					}
-					break;
-				case 4:
-					if (pessoaFisicaDAO.listarPessoaFisicas().isEmpty()) {
-						System.out.println("Nao existem PessoaFisicas cadastradas!\n");
-					} else {
-						System.out.println("CPF\t" + "Nome\t" + "Endereco\t"
-								+ "Bairro\t\t" + "CEP\t" + "Cidade\t"
-								);
-						for (PessoaFisica pFis : pFisicas) {
-							System.out.println(pFis.toString());
-						}
-					}
+				System.out.println("Qual o CPF da pessoa?");
+				PessoaFisica p = new PessoaFisica(entrada.nextLine());
 
-					System.out.println("Qual o CPF da PessoaFisica a excluir?");
-					String cpf = entrada.nextLine();
-					pf = pessoaFisicaDAO.procurar(cpf);
-					if (pf != null) {
-						try {
-							pessoaFisicaDAO.excluirPessoaFisica(pf);
-						} catch (Exception e) {
-							// TODO: handle exception
-						}
-					} else {
-						System.out
-								.println("PessoaFisica nao encontrada, tente novamente!");
-					}
-					break;
-				case 5:
+				System.out.println("Qual o nome da pessoa?");
+				p.setNome(entrada.nextLine());
 
-					break;
-				case 6:
-					Tela();
-					break;
-				default:
-					System.out.println("Opcao invalida. Tente novamente:");
-					break;
+				System.out.println("Qual o endereco da pessoa?");
+				p.setEndereco(entrada.nextLine());
+
+				System.out.println("Qual o bairro da pessoa?");
+				p.setBairro(entrada.nextLine());
+
+				System.out.println("Qual o CEP da pessoa?");
+				p.setCep(entrada.nextLine());
+
+				System.out.println("Qual o cidade da pessoa?");
+				p.setCidade(entrada.nextLine());
+
+				r.setCliente(p);
+				pessoaFisicaDAO.addPessoaFisica(p);
+				break;
+			case 2:
+				pFisicas = pessoaFisicaDAO.listarPessoaFisicas();
+				if (pFisicas.isEmpty()) {
+					System.out.println("Nao existem pessoas cadastradas!");
+				} else {
+					System.out.println("ID\t" + "CPF\t\t\t" + "Nome\t");
+					for (PessoaFisica pessoa : pFisicas) {
+						System.out.println(pessoa.toString());
+					}
 				}
-			} while (opcao != 5);
-			entrada.close();
-		
+				break;
+			case 3:
+				System.out.println("Qual o id da pessoa para alterar?");
+				id = entrada.nextInt();
+				pf = pessoaFisicaDAO.procurar(id);
+				if (pf != null) {
+					System.out.println("Nome atual <" + pf.getNome()
+							+ ">, deseja alterar: S ou N?");
+					resposta = entrada.next();
+					if (resposta.equals("S")) {
+						System.out.println("Qual o novo nome?");
+						r.setDescricao(entrada.next());
+					}
+					try {
+						pessoaFisicaDAO.alterarPessoaFisica(pf);
+					} catch (Exception e) {
+						throw e;
+					}
+				} else {
+					System.out
+							.println("Pessoa nao encontrada, tente novamente!");
+				}
+				break;
+			case 4:
+				if (pessoaFisicaDAO.listarPessoaFisicas().isEmpty()) {
+					System.out
+							.println("Nao existem pessoas cadastradas!\n");
+				} else {
+					System.out.println("CPF\t" + "Nome\t" + "Endereco\t"
+							+ "Bairro\t\t" + "CEP\t" + "Cidade\t");
+					for (PessoaFisica pFis : pFisicas) {
+						System.out.println(pFis.toStringFormatada());
+					}
+				}
+
+				System.out.println("Qual o CPF da pessoa fisica a excluir?");
+				String cpf = entrada.nextLine();
+				pf = pessoaFisicaDAO.procurar(cpf);
+				if (pf != null) {
+					try {
+						pessoaFisicaDAO.excluirPessoaFisica(pf);
+					} catch (Exception e) {
+					}
+				} else {
+					System.out
+							.println("Pessoa fisica nao encontrada, tente novamente!");
+				}
+				break;
+			case 5:
+
+				break;
+			case 6:
+				Tela();
+				break;
+			default:
+				System.out.println("Opcao invalida. Tente novamente:");
+				break;
+			}
+		} while (opcao != 5);
+		entrada.close();
+
 	}
 
 	public void moduloPessoaJuridica() {
@@ -207,28 +202,80 @@ public class MenuPrincipal {
 			System.out.println("| 1 - Cadastrar nova receita       |");
 			System.out.println("| 2 - Exibir receitas              |");
 			System.out.println("| 3 - Alterar uma receita          |");
-			System.out.println("| 4 - Excluir uma receita          |");
-			System.out.println("| 5 - Realizar baixa               |");
-			System.out.println("| 6 - Voltar                       |");
+			System.out.println("| 4 - Remover uma receita          |");
+			System.out.println("| 5 - Buscar uma receita           |");
+			System.out.println("| 6 - Dar baixa em receita         |");
+			System.out.println("| 7 - Voltar                       |");
 			System.out.println("+----------------------------------+");
 			System.out.print("Digite a opcao escolhida:");
 			opcao = lerInteiro();
 
 			switch (opcao) {
 			case 1:
-				entrada.nextLine();
-				System.out.println("Qual o nome da receita?");
-				r.setDescricao(entrada.nextLine());
-				System.out.println("Qual data de vencimento (dd/mm/aaaa)?");
-				r.setDataVencimento(entrada.nextLine());
-				System.out.println("Qual o valor nominal?");
-				r.setValorNominal(entrada.nextDouble());
-				receitaDAO.addReceita(r);
+				// Opcao adicionar despesa
+				entrada.nextLine(); // para liberar a leitura do teclado
+				System.out
+						.println("A receita eh de uma PESSOA FÍSICA ou JURÍDICA?");
+				System.out.println("Digite 1 para FÍSICA ou 2 para JURÍDICA:");
+				opcao = lerInteiro();
+
+				if (opcao == 1) {
+					pFisicas = pessoaFisicaDAO.listarPessoaFisicas();
+					if (pFisicas.isEmpty()) {
+						System.out
+								.println("Nenhuma pessoa física foi cadastrada!");
+					} else {
+						System.out.println("ID\t" + "CPF\t\t\t" + "Nome\t");
+						for (PessoaFisica pessoa : pFisicas) {
+							System.out.println(pessoa.toStringFormatada());
+						}
+					}
+					entrada.nextLine(); // para liberar a leitura do teclado
+					r.setTipoCliente(1);
+					System.out.println("Qual o ID da pessoa física?");
+					id = entrada.nextInt();
+					pf = pessoaFisicaDAO.procurar(id);
+					r.setCliente(pf);
+					System.out.println("Qual o nome da receita?");
+					r.setDescricao(entrada.nextLine());
+					System.out.println("Qual data de vencimento (dd/mm/aaaa)?");
+					r.setDataVencimento(entrada.nextLine());
+					System.out.println("Qual o valor nominal?");
+					r.setValorNominal(entrada.nextDouble());
+					receitaDAO.addReceita(r);
+				} else if (opcao == 2) {
+					pJuridicas = pessoaJuridicaDAO.listarPessoaJuridicas();
+					if (pJuridicas.isEmpty()) {
+						System.out
+								.println("Nenhuma pessoa jurídica foi cadastrada!");
+					} else {
+						System.out.println("ID\t" + "CNPJ\t\t\t" + "Nome\t");
+						for (PessoaJuridica pessoa : pJuridicas) {
+							System.out.println(pessoa.toStringFormatada());
+						}
+					}
+					entrada.nextLine(); // para liberar a leitura do teclado
+					r.setTipoCliente(2);
+					System.out.println("Qual o ID da pessoa jurídica?");
+					id = entrada.nextInt();
+					pj = pessoaJuridicaDAO.procurar(id);
+					r.setCliente(pj);
+					System.out.println("Qual o nome da receita?");
+					r.setDescricao(entrada.nextLine());
+					System.out.println("Qual data de vencimento (dd/mm/aaaa)?");
+					r.setDataVencimento(entrada.nextLine());
+					System.out.println("Qual o valor nominal?");
+					r.setValorNominal(entrada.nextDouble());
+					receitaDAO.addReceita(r);
+				} else {
+					System.out
+							.println("Pessoa não encontrada. Tente novamente!");
+				}
 				break;
 			case 2:
 				receitas = receitaDAO.listarReceitas();
 				if (receitas.isEmpty()) {
-					System.err.println("Nao existem receitas cadastradas!");
+					System.out.println("Nao existem receitas cadastradas!");
 				} else {
 					System.out.println("Id\t" + "Descricao\t" + "Vencimento\t"
 							+ "Valor\t\t" + "Status\t" + "Valor recebido\t"
@@ -239,9 +286,10 @@ public class MenuPrincipal {
 				}
 				break;
 			case 3:
-/*				receitas = receitaDAO.listarReceitas();
+				receitas = receitaDAO.listarReceitas();
 				if (receitas.isEmpty()) {
 					System.out.println("Nao existem receitas cadastradas!\n");
+					moduloReceita();
 				} else {
 					System.out.println("Id\t" + "Descricao\t" + "Vencimento\t"
 							+ "Valor\t\t" + "Status\t" + "Valor recebido\t"
@@ -250,7 +298,7 @@ public class MenuPrincipal {
 						System.out.println(receita.toStringFormatada());
 					}
 				}
-*/				System.out.println("Qual o id da receita para alterar?");
+				System.out.println("Qual o id da receita para alterar?");
 				id = entrada.nextInt();
 				r = receitaDAO.procurar(id);
 				if (r != null) {
@@ -277,7 +325,7 @@ public class MenuPrincipal {
 						r.setDataVencimento(entrada.next());
 					}
 					try {
-						receitaDAO.alterarReceita(r);						
+						receitaDAO.alterarReceita(r);
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
@@ -289,6 +337,7 @@ public class MenuPrincipal {
 			case 4:
 				if (receitaDAO.listarReceitas().isEmpty()) {
 					System.out.println("Nao existem receitas cadastradas!\n");
+					moduloReceita();
 				} else {
 					System.out.println("Id\t" + "Descricao\t" + "Vencimento\t"
 							+ "Valor\t\t" + "Status\t" + "Valor recebido\t"

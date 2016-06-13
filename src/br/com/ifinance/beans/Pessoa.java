@@ -12,8 +12,16 @@ public abstract class Pessoa implements Serializable {
 	private String bairro;
 	private String cidade;
 	private String cep;
-	private Movimento movimento;
-	private Usuario usuario;
+
+	public int compareTo(Pessoa comp) {
+		if (this.id < comp.id) {
+			return -1;
+		}
+		if (this.id > comp.id) {
+			return 1;
+		}
+		return 0;
+	}
 
 	public int getId() {
 		return id;
@@ -61,22 +69,6 @@ public abstract class Pessoa implements Serializable {
 
 	public void setCep(String cep) {
 		this.cep = cep;
-	}
-
-	public Movimento getMovimento() {
-		return movimento;
-	}
-
-	public void setMovimento(Movimento movimento) {
-		this.movimento = movimento;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 }

@@ -42,6 +42,7 @@ public class ReceitaDAO {
 		receitas.add(r);
 		try {
 			PersistenciaDAO.salvar(receitas, "receitas.txt");
+			System.out.println("Receita adicionada com sucesso!");
 		} catch (Exception e) {
 			System.out.println("Erro incluindo a receita.");
 		}
@@ -64,11 +65,11 @@ public class ReceitaDAO {
 	}
 
 	/**
-	 * Metodo para recuperar a lista de receitas do arquivo receitas.txt para
-	 * memoria
+	 * Metodo para alterar uma receita
 	 * 
-	 * @param nenhum
-	 * @return lista de objetos requisitada
+	 * @param um
+	 *            objeto receita
+	 * @return nenhum
 	 */
 
 	public void alterarReceita(Receita receita) throws FileNotFoundException,
@@ -81,26 +82,43 @@ public class ReceitaDAO {
 
 		try {
 			PersistenciaDAO.salvar(receitas, "receitas.txt");
+			System.out.println("Receita alterada com sucesso!");
 		} catch (FileNotFoundException e) {
 			System.out.println("Nao foi possivel alterar a receita.");
 		}
 	}
 
+	public void baixaReceita(String descricao, double valorBaixa,
+			String dataBaixa) {
+		for (Receita receita : receitas) {
+			if (receita.getDescricao().equals(descricao)) {
+				receita.baixar(valorBaixa, dataBaixa);
+			}
+		}
+
+		try {
+			PersistenciaDAO.salvar(receitas, "receitas.txt");
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Erro baixando despesa.");
+		}
+
+	}
+
 	public void excluirReceita(Receita receita) throws FileNotFoundException,
 			IOException {
-		/*receitas.forEach(obj -> {
-			if (obj.equals(receita)) {
-				receitas.remove(obj);
-			}
-		});*/
+		/*
+		 * receitas.forEach(obj -> { if (obj.equals(receita)) {
+		 * receitas.remove(obj); } });
+		 */
 
 		try {
 			int indice = receitas.indexOf(receita);
 			receitas.remove(indice);
 			PersistenciaDAO.salvar(receitas, "receitas.txt");
+			System.out.println("Receita removida com sucesso!");
 		} catch (FileNotFoundException e) {
-			System.out
-					.println("Nao foi possivel excluir a receita.");
+			System.out.println("Nao foi possivel excluir a receita.");
 		}
 	}
 

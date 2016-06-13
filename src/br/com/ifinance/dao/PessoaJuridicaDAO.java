@@ -15,7 +15,7 @@ public class PessoaJuridicaDAO {
 	public PessoaJuridicaDAO() throws NullPointerException {
 		try {
 			pjuridicas = (List<PessoaJuridica>) PersistenciaDAO
-					.ler("PessoaJuridicas.txt");
+					.ler("pJuridicas.txt");
 
 		} catch (NullPointerException e) {
 		}
@@ -28,21 +28,22 @@ public class PessoaJuridicaDAO {
 	 * @param nenhum
 	 * @return lista de objetos requisitada
 	 */
-	public void addPessoaJuridica(PessoaJuridica r) throws IOException,
+	public void addPessoaJuridica(PessoaJuridica pj) throws IOException,
 			ClassNotFoundException {
 		if (pjuridicas == null) {
 			pjuridicas = new ArrayList<PessoaJuridica>();
 		}
 		try {
-			r.setId(pjuridicas.size() + 1);
+			pj.setId(pjuridicas.size() + 1);
 			// r.setId(Collections.max(pessoas).getId() + 1);
 
 		} catch (Exception e) {
-			r.setId(1);
+			pj.setId(1);
 		}
-		pjuridicas.add(r);
+		pjuridicas.add(pj);
 		try {
-			PersistenciaDAO.salvar(pjuridicas, "PessoaJuridicas.txt");
+			PersistenciaDAO.salvar(pjuridicas, "pJuridicas.txt");
+			System.out.println("Pessoa jurídica adicionada com sucesso!");
 		} catch (Exception e) {
 			System.out.println("Erro incluindo a PessoaJuridica.");
 		}
@@ -81,7 +82,7 @@ public class PessoaJuridicaDAO {
 		});
 
 		try {
-			PersistenciaDAO.salvar(pjuridicas, "PessoaJuridicas.txt");
+			PersistenciaDAO.salvar(pjuridicas, "pJuridicas.txt");
 		} catch (FileNotFoundException e) {
 			System.out.println("Nao foi possivel alterar a PessoaJuridica.");
 		}
@@ -97,7 +98,7 @@ public class PessoaJuridicaDAO {
 		try {
 			int indice = pjuridicas.indexOf(PessoaJuridica);
 			pjuridicas.remove(indice);
-			PersistenciaDAO.salvar(pjuridicas, "PessoaJuridicas.txt");
+			PersistenciaDAO.salvar(pjuridicas, "pJuridicas.txt");
 		} catch (FileNotFoundException e) {
 			System.out.println("Nao foi possivel excluir a PessoaJuridica.");
 		}

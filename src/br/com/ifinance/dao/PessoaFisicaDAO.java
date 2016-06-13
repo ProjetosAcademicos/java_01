@@ -14,8 +14,7 @@ public class PessoaFisicaDAO {
 	@SuppressWarnings("unchecked")
 	public PessoaFisicaDAO() throws NullPointerException {
 		try {
-			pfisicas = (List<PessoaFisica>) PersistenciaDAO
-					.ler("PessoaFisicas.txt");
+			pfisicas = (List<PessoaFisica>) PersistenciaDAO.ler("pFisicas.txt");
 
 		} catch (NullPointerException e) {
 		}
@@ -42,7 +41,7 @@ public class PessoaFisicaDAO {
 		}
 		pfisicas.add(r);
 		try {
-			PersistenciaDAO.salvar(pfisicas, "PessoaFisicas.txt");
+			PersistenciaDAO.salvar(pfisicas, "pFisicas.txt");
 		} catch (Exception e) {
 			System.out.println("Erro incluindo a PessoaFisica.");
 		}
@@ -53,11 +52,17 @@ public class PessoaFisicaDAO {
 		return pfisicas;
 	}
 
-	public PessoaFisica procurar(String descricao) {
-		return pfisicas.stream().filter(obj -> obj.getCpf().equals(descricao))
+	public PessoaFisica procurar(String cpf) {
+		return pfisicas.stream().filter(obj -> obj.getCpf().equals(cpf))
 				.findFirst().orElse(null);
 	}
 
+	/**
+	 * Metodo para procurar uma Pessoa fisica pelo ID.
+	 * 
+	 * @param ID
+	 * @return lista de objetos requisitada
+	 */
 	public PessoaFisica procurar(int id) {
 		return pfisicas.stream().filter(obj -> obj.getId() == id).findFirst()
 				.orElse(null);
@@ -70,7 +75,6 @@ public class PessoaFisicaDAO {
 	 * @param nenhum
 	 * @return lista de objetos requisitada
 	 */
-
 	public void alterarPessoaFisica(PessoaFisica PessoaFisica)
 			throws FileNotFoundException, IOException {
 		pfisicas.forEach(obj -> {
@@ -80,7 +84,7 @@ public class PessoaFisicaDAO {
 		});
 
 		try {
-			PersistenciaDAO.salvar(pfisicas, "PessoaFisicas.txt");
+			PersistenciaDAO.salvar(pfisicas, "pFisicas.txt");
 		} catch (FileNotFoundException e) {
 			System.out.println("Nao foi possivel alterar a PessoaFisica.");
 		}
@@ -96,9 +100,9 @@ public class PessoaFisicaDAO {
 		try {
 			int indice = pfisicas.indexOf(PessoaFisica);
 			pfisicas.remove(indice);
-			PersistenciaDAO.salvar(pfisicas, "PessoaFisicas.txt");
+			PersistenciaDAO.salvar(pfisicas, "pFisicas.txt");
 		} catch (FileNotFoundException e) {
-			System.out.println("Nao foi possivel excluir a PessoaFisica.");
+			System.out.println("Nao foi possivel excluir a pessoa fisica.");
 		}
 	}
 

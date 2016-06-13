@@ -6,6 +6,7 @@ public class Receita extends Movimento {
 	private double valorRecebido = 0;
 	private String dataRecebimento = "N/A";
 	private Pessoa cliente;
+	private int tipoCliente = 1;
 
 	public double getValorRecebido() {
 		return valorRecebido;
@@ -30,6 +31,14 @@ public class Receita extends Movimento {
 		this.cliente = cliente;
 	}
 
+	public int getTipoCliente() {
+		return tipoCliente;
+	}
+
+	public void setTipoCliente(int tipoCliente) {
+		this.tipoCliente = tipoCliente;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder strUtil = new StringBuilder();
@@ -40,15 +49,16 @@ public class Receita extends Movimento {
 		strUtil.append("Baixado: " + getBaixado() + "\n");
 		strUtil.append("Valor recebido: " + getValorRecebido() + "\n");
 		strUtil.append("Data de recebimento: " + getDataRecebimento() + "\n");
-
+		strUtil.append("Tipo de cliente: " + getTipoCliente() + "\n");
 		return strUtil.toString();
 	}
 
 	public String toStringFormatada() {
 		StringBuilder strUtil = new StringBuilder();
-		strUtil.append(getId() + "\t" + getDescricao() + "\t\t" + getDataVencimento() + "\t"
-				+ getValorNominal() + "\t" + getBaixadoSTR() + "\t"
-				+ getValorRecebido() + "\t" + getDataRecebimento());
+		strUtil.append(getId() + "\t" + getDescricao() + "\t\t"
+				+ getDataVencimento() + "\t" + getValorNominal() + "\t"
+				+ getBaixadoSTR() + "\t" + getValorRecebido() + "\t"
+				+ getDataRecebimento() + "\t" + getTipoCliente());
 
 		return strUtil.toString();
 	}
