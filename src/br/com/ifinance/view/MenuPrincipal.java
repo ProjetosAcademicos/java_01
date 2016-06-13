@@ -516,26 +516,27 @@ public class MenuPrincipal {
 
 	public void inserirDespesa(){
 		Pessoa fornecedor;
+		Despesa despesa = new Despesa();
 		
 		fornecedor = selecionaFornecedor();
 
 		if (fornecedor == null) {
 			System.out.println("fornecedor nao encontrado. Nao é possivel incluir a despesa!");
 		}else{
-			desp.setFornecedor(fornecedor);
+			despesa.setFornecedor(fornecedor);
 
 			entrada.nextLine();
 			System.out.println("Informe o documento?");
-			desp.setDocumento(entrada.nextLine());
+			despesa.setDocumento(entrada.nextLine());
 			System.out.println("Informe uma descrição para a despesa?");
-			desp.setDescricao(entrada.nextLine());
+			despesa.setDescricao(entrada.nextLine());
 			System.out.println("Qual data de vencimento (dd/mm/aaaa)?");
-			desp.setDataVencimento(entrada.nextLine());
+			despesa.setDataVencimento(entrada.nextLine());
 			System.out.println("Qual o valor nominal?");
-			desp.setValorNominal(entrada.nextDouble());
+			despesa.setValorNominal(entrada.nextDouble());
 
 			try {
-				despesaDAO.addDespesa(desp);
+				despesaDAO.addDespesa(despesa);
 
 				System.out.println("");
 				System.out.println("");
@@ -618,48 +619,49 @@ public class MenuPrincipal {
 	}
 
 	public void alterarDespesa(){
+		Despesa despesa = new Despesa();
 		listaDespesas(2);
 
 		System.out.println("Informe o ID da despesa a ser alterada: ");
 		id = entrada.nextInt();
-		desp = despesaDAO.procurar(id);
+		despesa = despesaDAO.procurar(id);
 		
 		if (desp != null) {
-			System.out.println("Documento atual <" + desp.getDocumento() + ">, deseja alterar: S ou N?");
+			System.out.println("Documento atual <" + despesa.getDocumento() + ">, deseja alterar: S ou N?");
 			resposta = entrada.next();
 			if (resposta.equals("S")) {
 				System.out.println("Qual o novo documento?");
-				desp.setDocumento(entrada.nextLine());
+				despesa.setDocumento(entrada.nextLine());
 			}
 
-			System.out.println("Descricao atual <" + desp.getDescricao()
+			System.out.println("Descricao atual <" + despesa.getDescricao()
 					+ ">, deseja alterar: S ou N?");
 			resposta = entrada.next();
 			if (resposta.equals("S")) {
 				entrada.nextLine();
 				System.out.println("Qual a nova descricao?");
-				desp.setDescricao(entrada.nextLine());
+				despesa.setDescricao(entrada.nextLine());
 			}
 			
 			System.out.println("Vencimento atual <"
-					+ desp.getDataVencimento()
+					+ despesa.getDataVencimento()
 					+ ">, deseja alterar: S ou N?");
 			resposta = entrada.next();
 			if (resposta.equals("S")) {
 				entrada.nextLine();
 				System.out.println("Qual o novo vencimento?");
-				desp.setDataVencimento(entrada.next());
+				despesa.setDataVencimento(entrada.next());
 			}
 			
-			System.out.println("Valor atual <" + desp.getValorNominal()
+			System.out.println("Valor atual <" + despesa.getValorNominal()
 					+ ">, deseja alterar: S ou N?");
 			resposta = entrada.next();
 			if (resposta.equals("S")) {
 				System.out.println("Qual o novo valor?");
-				desp.setValorNominal(entrada.nextDouble());
+				despesa.setValorNominal(entrada.nextDouble());
 			}
 			try {
-				despesaDAO.alterarDespesa(desp);						
+				despesaDAO.alterarDespesa(despesa);						
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
