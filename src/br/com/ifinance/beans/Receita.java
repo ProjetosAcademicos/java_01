@@ -46,19 +46,21 @@ public class Receita extends Movimento {
 		strUtil.append("Descrição: " + getDescricao() + "\n");
 		strUtil.append("Vencimento: " + getDataVencimento() + "\n");
 		strUtil.append("Valor: " + getValorNominal() + "\n");
-		strUtil.append("Baixado: " + getBaixado() + "\n");
+		strUtil.append("Status: " + getBaixado() + "\n");
 		strUtil.append("Valor recebido: " + getValorRecebido() + "\n");
-		strUtil.append("Data de recebimento: " + getDataRecebimento() + "\n");
+		strUtil.append("Data recebimento: " + getDataRecebimento() + "\n");
+		strUtil.append("Cliente: " + getCliente().getNome() + "\n");
 		strUtil.append("Tipo de cliente: " + getTipoCliente() + "\n");
 		return strUtil.toString();
 	}
 
 	public String toStringFormatada() {
 		StringBuilder strUtil = new StringBuilder();
-		strUtil.append(getId() + "\t" + getDescricao() + "\t\t"
-				+ getDataVencimento() + "\t" + getValorNominal() + "\t"
-				+ getBaixadoSTR() + "\t" + getValorRecebido() + "\t"
-				+ getDataRecebimento() + "\t" + getTipoCliente());
+		strUtil.append("|" + getId() + "\t" + "|" + getDescricao() + "\t\t"
+				+ "|" + getDataVencimento() + "\t" + "|" + getValorNominal()
+				+ "\t\t" + "|" + getBaixadoSTR() + "\t" + "|"
+				+ getValorRecebido() + "|" + getDataRecebimento() + "\t" + "|"
+				+ getCliente().getNome() + "\t" + "|" + "|" + getTipoCliente());
 
 		return strUtil.toString();
 	}
