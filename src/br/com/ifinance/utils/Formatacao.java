@@ -6,6 +6,9 @@ public class Formatacao {
 		int Qtde;
 
 		formatado = texto;
+		if (formatado == null)
+			formatado = "";
+		
 		Qtde = NumCaracteres - formatado.length();
 		if (Qtde <= 0)
 			formatado = formatado.substring(0, NumCaracteres);

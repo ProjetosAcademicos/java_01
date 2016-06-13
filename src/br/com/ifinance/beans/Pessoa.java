@@ -71,4 +71,9 @@ public abstract class Pessoa implements Serializable {
 		this.cep = cep;
 	}
 
+	public String getDocumento(){
+		String doc = "";
+		
+		return doc;
+	}	
 }

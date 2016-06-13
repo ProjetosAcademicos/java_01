@@ -42,4 +42,10 @@ public class PessoaFisica extends Pessoa {
 		return strUtil.toString();
 	}
 
+	@Override
+	public String getDocumento(){
+		String doc = this.cpf;
+		
+		return doc;
+	}	
 }

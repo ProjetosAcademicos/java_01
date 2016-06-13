@@ -41,4 +41,10 @@ public class PessoaJuridica extends Pessoa {
 		return strUtil.toString();
 	}
 
+	@Override
+	public String getDocumento(){
+		String doc = this.cnpj;
+		
+		return doc;
+	}	
 }

@@ -36,14 +36,14 @@ public class Movimento implements Serializable, Comparable<Movimento> {
 
 	public String getBaixadoSTR() {
 		String status;
-		switch (this.baixado) {
-		case 0:
+
+		if (this.baixado == 0)
 			status = "PENDENTE";
-		case 1:
-			status = "BAIXADO";
-		default:
-			status = "N/A";
-		}
+		else
+			if (this.baixado == 1)
+				status = "BAIXADO";
+			else
+				status = "N/A";
 		return status;
 	}
 
