@@ -6,7 +6,6 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-
 import br.com.ifinance.beans.Despesa;
 import br.com.ifinance.beans.Pessoa;
 import br.com.ifinance.beans.PessoaFisica;
@@ -45,7 +44,7 @@ public class MenuPrincipal {
 
 		desp = new Despesa();
 		despesaDAO = new DespesaDAO();
-		
+
 		pessoaFisicaDAO = new PessoaFisicaDAO();
 		pessoaJuridicaDAO = new PessoaJuridicaDAO();
 	}
@@ -96,7 +95,7 @@ public class MenuPrincipal {
 			System.out.println("| 2 - Exibir pessoas fisicas       |");
 			System.out.println("| 3 - Alterar uma pessoa fisica    |");
 			System.out.println("| 4 - Excluir uma pessoa fisica    |");
-			System.out.println("| 6 - Voltar                       |");
+			System.out.println("| 5 - Voltar                       |");
 			System.out.println("+----------------------------------+");
 			System.out.print("Digite a opcao escolhida:");
 			opcao = lerInteiro();
@@ -130,7 +129,7 @@ public class MenuPrincipal {
 				if (pFisicas.isEmpty()) {
 					System.out.println("Nao existem pessoas cadastradas!");
 				} else {
-//					System.out.println("ID\t" + "CPF\t\t\t" + "Nome\t");
+					// System.out.println("ID\t" + "CPF\t\t\t" + "Nome\t");
 					for (PessoaFisica pessoa : pFisicas) {
 						System.out.println(pessoa.toString());
 					}
@@ -151,25 +150,25 @@ public class MenuPrincipal {
 					}
 
 					System.out.println("Endereco atual <" + pf.getEndereco()
-					+ ">, deseja alterar: S ou N?");
+							+ ">, deseja alterar: S ou N?");
 					resposta = entrada.next();
 					if (resposta.equals("S")) {
 						entrada.nextLine();
 						System.out.println("Qual o novo endereco?");
 						pf.setEndereco(entrada.nextLine());
 					}
-					
+
 					System.out.println("Birro atual <" + pf.getBairro()
-					+ ">, deseja alterar: S ou N?");
+							+ ">, deseja alterar: S ou N?");
 					resposta = entrada.next();
 					if (resposta.equals("S")) {
 						entrada.nextLine();
 						System.out.println("Qual o novo bairro?");
 						pf.setBairro(entrada.nextLine());
 					}
-					
+
 					System.out.println("Cidade atual <" + pf.getCidade()
-					+ ">, deseja alterar: S ou N?");
+							+ ">, deseja alterar: S ou N?");
 					resposta = entrada.next();
 					if (resposta.equals("S")) {
 						entrada.nextLine();
@@ -177,16 +176,14 @@ public class MenuPrincipal {
 						pf.setCidade(entrada.nextLine());
 					}
 
-					
 					System.out.println("CEP atual <" + pf.getCep()
-					+ ">, deseja alterar: S ou N?");
+							+ ">, deseja alterar: S ou N?");
 					resposta = entrada.next();
 					if (resposta.equals("S")) {
 						entrada.nextLine();
 						System.out.println("Qual o novo CEP?");
 						pf.setCep(entrada.nextLine());
 					}
-					
 
 					try {
 						pessoaFisicaDAO.alterarPessoaFisica(pf);
@@ -225,9 +222,6 @@ public class MenuPrincipal {
 				}
 				break;
 			case 5:
-
-				break;
-			case 6:
 				Tela();
 				break;
 			default:
@@ -239,16 +233,17 @@ public class MenuPrincipal {
 
 	}
 
-	public void moduloPessoaJuridica() throws ClassNotFoundException, IOException {
+	public void moduloPessoaJuridica() throws ClassNotFoundException,
+			IOException {
 		do {
 			System.out.println("+------------------------------------+");
 			System.out.println("|       Modulo Pessoa Juridica       |");
 			System.out.println("|------------------------------------|");
-			System.out.println("| 1 - Cadastrar nova pessoa Juridica |");
-			System.out.println("| 2 - Exibir pessoas Juridicas       |");
-			System.out.println("| 3 - Alterar uma pessoa Juridica    |");
-			System.out.println("| 4 - Excluir uma pessoa Juridica    |");
-			System.out.println("| 6 - Voltar                         |");
+			System.out.println("| 1 - Cadastrar nova pessoa juridica |");
+			System.out.println("| 2 - Exibir pessoas juridicas       |");
+			System.out.println("| 3 - Alterar uma pessoa juridica    |");
+			System.out.println("| 4 - Excluir uma pessoa juridica    |");
+			System.out.println("| 5 - Voltar                         |");
 			System.out.println("+----------------------------------+");
 			System.out.print("Digite a opcao escolhida:");
 			opcao = lerInteiro();
@@ -282,7 +277,7 @@ public class MenuPrincipal {
 				if (pJuridicas.isEmpty()) {
 					System.out.println("Nao existem pessoas cadastradas!");
 				} else {
-//					System.out.println("ID\t" + "CPF\t\t\t" + "Nome\t");
+					// System.out.println("ID\t" + "CPF\t\t\t" + "Nome\t");
 					for (PessoaJuridica pessoa : pJuridicas) {
 						System.out.println(pessoa.toString());
 					}
@@ -303,25 +298,25 @@ public class MenuPrincipal {
 					}
 
 					System.out.println("Endereco atual <" + pj.getEndereco()
-					+ ">, deseja alterar: S ou N?");
+							+ ">, deseja alterar: S ou N?");
 					resposta = entrada.next();
 					if (resposta.equals("S")) {
 						entrada.nextLine();
 						System.out.println("Qual o novo endereco?");
 						pj.setEndereco(entrada.nextLine());
 					}
-					
+
 					System.out.println("Birro atual <" + pj.getBairro()
-					+ ">, deseja alterar: S ou N?");
+							+ ">, deseja alterar: S ou N?");
 					resposta = entrada.next();
 					if (resposta.equals("S")) {
 						entrada.nextLine();
 						System.out.println("Qual o novo bairro?");
 						pj.setBairro(entrada.nextLine());
 					}
-					
+
 					System.out.println("Cidade atual <" + pj.getCidade()
-					+ ">, deseja alterar: S ou N?");
+							+ ">, deseja alterar: S ou N?");
 					resposta = entrada.next();
 					if (resposta.equals("S")) {
 						entrada.nextLine();
@@ -329,16 +324,14 @@ public class MenuPrincipal {
 						pj.setCidade(entrada.nextLine());
 					}
 
-					
 					System.out.println("CEP atual <" + pj.getCep()
-					+ ">, deseja alterar: S ou N?");
+							+ ">, deseja alterar: S ou N?");
 					resposta = entrada.next();
 					if (resposta.equals("S")) {
 						entrada.nextLine();
 						System.out.println("Qual o novo CEP?");
 						pj.setCep(entrada.nextLine());
 					}
-					
 
 					try {
 						pessoaJuridicaDAO.alterarPessoaJuridica(pj);
@@ -355,7 +348,7 @@ public class MenuPrincipal {
 				if (pJuridicas.isEmpty()) {
 					System.out.println("Nao existem pessoas cadastradas!\n");
 				} else {
-					System.out.println("ID\t"+"CNPJ\t\t" + "Nome\t" );
+					System.out.println("ID\t" + "CNPJ\t\t" + "Nome\t");
 					for (PessoaJuridica pJur : pJuridicas) {
 						System.out.println(pJur.toStringFormatada());
 					}
@@ -376,9 +369,6 @@ public class MenuPrincipal {
 				}
 				break;
 			case 5:
-
-				break;
-			case 6:
 				Tela();
 				break;
 			default:
@@ -386,7 +376,7 @@ public class MenuPrincipal {
 				break;
 			}
 		} while (opcao != 5);
-		entrada.close();		
+		entrada.close();
 	}
 
 	public void moduloReceita() throws ClassNotFoundException, IOException {
@@ -406,17 +396,17 @@ public class MenuPrincipal {
 			opcao = lerInteiro();
 
 			switch (opcao) {
-			case 1:
+			case 1: // Cadastrar nova receita
 				// Opcao adicionar despesa
 				entrada.nextLine(); // para liberar a leitura do teclado
 				System.out
 						.println("A receita eh de uma PESSOA FISICA ou JURIDICA?");
 				System.out.println("Digite 1 para FISICA ou 2 para JURIDICA:");
 				opcao = lerInteiro();
-				
+
 				pFisicas = pessoaFisicaDAO.listarPessoaFisicas();
 				pJuridicas = pessoaJuridicaDAO.listarPessoaJuridicas();
-				
+
 				if (opcao == 1 && !pFisicas.isEmpty()) {
 					System.out.println("ID\t" + "CPF\t\t\t" + "Nome\t");
 					for (PessoaFisica pessoa : pFisicas) {
@@ -436,8 +426,7 @@ public class MenuPrincipal {
 					System.out.println("Qual o valor nominal?");
 					r.setValorNominal(entrada.nextDouble());
 					receitaDAO.addReceita(r);
-				} else if (opcao == 2
-						&& !pJuridicas.isEmpty()) {
+				} else if (opcao == 2 && !pJuridicas.isEmpty()) {
 					System.out.println("ID\t" + "CNPJ\t\t\t" + "Nome\t");
 					for (PessoaJuridica pessoa : pJuridicas) {
 						System.out.println(pessoa.toStringFormatada());
@@ -461,34 +450,40 @@ public class MenuPrincipal {
 							.println("Pessoa n√£o encontrada, ou lista vazia!");
 				}
 				break;
-			case 2:
+			case 2: // Exibir receitas
 				receitas = receitaDAO.listarReceitas();
 				if (receitas.isEmpty()) {
 					System.out.println("Nao existem receitas cadastradas!");
 				} else {
+					System.out.println("+----------Lista de receitas--------+");
 					for (Receita receita : receitas) {
 						System.out.println(receita.toString());
 					}
+					System.out.println("+-----------------------------------+");
 				}
 				break;
-			case 3:
-				if (receitaDAO.listarReceitas() == null) {
+			case 3: // Alterar uma receita
+				receitas = receitaDAO.listarReceitas();
+				if (receitas.isEmpty()) {
 					System.out.println("Nao existem receitas cadastradas!\n");
 					moduloReceita();
 				} else {
+					System.out.println("ID\tDescri√ß√£o");
 					for (Receita receita : receitas) {
-						System.out.println(receita.toString());
+						System.out.println(receita.toStringFormatada());
 					}
 				}
 				entrada.nextLine(); // Para limpar o buffer do teclado.
 				System.out.println("Qual o ID da receita para alterar?");
 				id = entrada.nextInt();
-				if (receitaDAO.procurar(id) != null) {
+				r = receitaDAO.procurar(id);
+				if (r != null) {
 					entrada.nextLine(); // Para limpar o buffer do teclado.
 					System.out.println("Descricao atual <" + r.getDescricao()
 							+ ">, deseja alterar: S ou N?");
 					resposta = entrada.next();
 					if (resposta.equals("S")) {
+						entrada.nextLine();
 						System.out.println("Qual a nova descricao?");
 						r.setDescricao(entrada.nextLine());
 					}
@@ -514,40 +509,7 @@ public class MenuPrincipal {
 							+ r.getCliente().getNome()
 							+ ">, deseja alterar: S ou N?");
 					resposta = entrada.nextLine();
-					if (resposta.equals("S")) {
-						entrada.nextLine(); // para liberar a leitura do teclado
-						System.out
-								.println("O novo cliente ser√° PESSOA FISICA ou JURIDICA?");
-						System.out
-								.println("Digite 1 para FISICA ou 2 para JURIDICA:");
-						opcao = lerInteiro();
-						if (opcao == 1
-								&& pessoaFisicaDAO.listarPessoaFisicas() != null) {
-							System.out.println("ID\t" + "CPF\t\t\t" + "Nome\t");
-							for (PessoaFisica pessoa : pFisicas) {
-								System.out.println(pessoa.toStringFormatada());
-							}
-							entrada.nextLine(); // Para limpar o buffer do teclado.
-							r.setTipoCliente(1);
-							System.out.println("Qual o ID da pessoa f√≠sica?");
-							id = entrada.nextInt();
-							pj = pessoaJuridicaDAO.procurar(id);
-							r.setCliente(pj);
-						}
-						if (opcao == 2
-								&& pessoaJuridicaDAO.listarPessoaJuridicas() != null) {
-							System.out.println("ID\t" + "CNPJ\t\t\t" + "Nome\t");
-							for (PessoaJuridica pessoa : pJuridicas) {
-								System.out.println(pessoa.toStringFormatada());
-							}
-							entrada.nextLine(); // Para limpar o buffer do teclado.
-							r.setTipoCliente(1);
-							System.out.println("Qual o ID da pessoa jur√≠dica?");
-							id = entrada.nextInt();
-							pj = pessoaJuridicaDAO.procurar(id);
-							r.setCliente(pj);
-						}
-					}
+					alterarCliente(resposta);
 					try {
 						receitaDAO.alterarReceita(r);
 					} catch (Exception e) {
@@ -558,13 +520,14 @@ public class MenuPrincipal {
 							.println("Receita n√£o encontrada, tente novamente!");
 				}
 				break;
-			case 4:
-				if (receitaDAO.listarReceitas().isEmpty()) {
+			case 4: // Remover uma receita
+				receitas = receitaDAO.listarReceitas();
+				if (receitas.isEmpty()) {
 					System.out.println("Nao existem receitas cadastradas!\n");
 					moduloReceita();
 				} else {
 					for (Receita receita : receitas) {
-						System.out.println(receita.toString());
+						System.out.println(receita.toStringFormatada());
 					}
 				}
 				System.out.println("Qual o id da receita a excluir?");
@@ -581,18 +544,87 @@ public class MenuPrincipal {
 							.println("Receita nao encontrada, tente novamente!");
 				}
 				break;
-			case 5:
-
+			case 5: // Buscar uma receita
+				entrada.nextLine();
+				System.out.println("Qual descricao da receita para procurar:");
+				String descricao = entrada.nextLine();
+				r = receitaDAO.procurar(descricao);
+				if (r != null) {
+					System.out.println(r.toString());
+				} else {
+					System.out
+							.println("Receita n√£o encontrada. Tente novamente!");
+				}
 				break;
-			case 6:
+			case 6: // Dar baixa em uma receita
+				realizarBaixaReceita();
+				break;
+			case 7: // Sair do modulo receita
 				Tela();
 				break;
 			default:
 				System.out.println("Opcao invalida. Tente novamente:");
 				break;
 			}
-		} while (opcao != 5);
+		} while (opcao != 7);
 		entrada.close();
+	}
+
+	public void alterarCliente(String resposta) {
+		if (resposta.equals("S")) {
+			System.out.println("Escolha o tipo de cliente:");
+			System.out.println("1 - PESSOA FISICA\n2 - PESSOA JURIDICA:");
+			opcao = lerInteiro();
+			if (opcao == 1 && pessoaFisicaDAO.listarPessoaFisicas() != null) {
+				System.out.println("ID\t" + "CPF\t\t\t" + "Nome\t");
+				for (PessoaFisica pessoa : pFisicas) {
+					System.out.println(pessoa.toStringFormatada());
+				}
+				// Para limpar o buffer do teclado.
+				entrada.nextLine();
+				r.setTipoCliente(1);
+				System.out.println("Qual o ID da pessoa f√≠sica?");
+				id = entrada.nextInt();
+				r.setCliente(pessoaFisicaDAO.procurar(id));
+			}
+			if (opcao == 2 && pessoaJuridicaDAO.listarPessoaJuridicas() != null) {
+				System.out.println("ID\t" + "CNPJ\t\t\t" + "Nome\t");
+				for (PessoaJuridica pessoa : pJuridicas) {
+					System.out.println(pessoa.toStringFormatada());
+				}
+				// Para limpar o buffer do teclado.
+				entrada.nextLine();
+				r.setTipoCliente(2);
+				System.out.println("Qual o ID da pessoa jur√≠dica?");
+				id = entrada.nextInt();
+				r.setCliente(pessoaJuridicaDAO.procurar(id));
+			}
+		}
+	}
+
+	public void realizarBaixaReceita() {
+		double valorBaixa;
+		String dataBaixa;
+		receitas = receitaDAO.listarReceitas();
+		if (receitas.isEmpty()) {
+			System.out.println("Nao existem receitas cadastradas!\n");
+		} else {
+			for (Receita receita : receitas) {
+				System.out.println(receita.toStringFormatada());
+			}
+		}
+		System.out.println("Qual o ID da receita para realizar baixa?");
+		int id = entrada.nextInt();
+		if (receitaDAO.procurar(id) != null) {
+			entrada.nextLine();
+			System.out.println("Qual data de recebimento (dd/mm/aaaa)?");
+			dataBaixa = entrada.nextLine();
+			System.out.println("Qual o valor do recebido?");
+			valorBaixa = entrada.nextDouble();
+			receitaDAO.baixaReceita(id, valorBaixa, dataBaixa);
+		} else {
+			System.out.println("N√£o foi poss√≠vel dar baixa na receita!");
+		}
 	}
 
 	public void moduloDespesa() throws ClassNotFoundException, IOException {
@@ -625,7 +657,7 @@ public class MenuPrincipal {
 				excluirDespesa();
 				break;
 			case 5:
-				realizarBaixa();
+				realizarBaixaDespesa();
 				break;
 			case 6:
 				exibirDepesaFornecedor();
@@ -641,43 +673,44 @@ public class MenuPrincipal {
 		entrada.close();
 	}
 
-	public void listaPessoaFisica(){
+	public void listaPessoaFisica() {
 		pFisicas = pessoaFisicaDAO.listarPessoaFisicas();
 
 		if (pFisicas == null) {
 			System.out.println("Nao existem pessoas cadastradas!");
 		} else {
-//			System.out.println("Id\t" + "CPF\t" + "nome\t");
+			// System.out.println("Id\t" + "CPF\t" + "nome\t");
 			for (PessoaFisica pessoa : pFisicas) {
 				System.out.println(pessoa.toStringFormatada());
 			}
 		}
-		
+
 	}
-	
-	public void listaPessoaJuridica(){
+
+	public void listaPessoaJuridica() {
 		pJuridicas = pessoaJuridicaDAO.listarPessoaJuridicas();
 
 		if (pJuridicas == null) {
 			System.out.println("Nao existem pessoas cadastradas!");
 		} else {
-//			System.out.println("Id\t" + "CNPJ\t" + "nome\t");
+			// System.out.println("Id\t" + "CNPJ\t" + "nome\t");
 			for (PessoaJuridica pessoa : pJuridicas) {
 				System.out.println(pessoa.toStringFormatada());
 			}
 		}
 	}
 
-	public Pessoa selecionaFornecedor(){
+	public Pessoa selecionaFornecedor() {
 		int resposta = 0;
 		Pessoa fornecedor;
-		
+
 		entrada.nextLine();
-		System.out.println("Informe se o fornecedor È pessoa fÌsica ou jurÌdica (1 - Juridica , 2 - FÌsica): ");
+		System.out
+				.println("Informe se o fornecedor eh pessoa fisica ou juridica (1 - Juridica , 2 - Fisica): ");
 		desp.setTipoFornecedor(lerInteiro());
 
-//		private Pessoa fornecedor;	
-		if (desp.getTipoFornecedor() == 2){
+		// private Pessoa fornecedor;
+		if (desp.getTipoFornecedor() == 2) {
 			listaPessoaFisica();
 			System.out.println("Informe o id do fornecedor?");
 			resposta = lerInteiro();
@@ -687,7 +720,7 @@ public class MenuPrincipal {
 				// TODO: handle exception
 				fornecedor = null;
 			}
-		}else{
+		} else {
 			listaPessoaJuridica();
 			System.out.println("Informe o id do fornecedor?");
 			resposta = lerInteiro();
@@ -696,26 +729,27 @@ public class MenuPrincipal {
 			} catch (Exception e) {
 				// TODO: handle exception
 				fornecedor = null;
-			}	
+			}
 		}
 		return fornecedor;
 	}
 
-	public void inserirDespesa(){
+	public void inserirDespesa() {
 		Pessoa fornecedor;
 		Despesa despesa = new Despesa();
-		
+
 		fornecedor = selecionaFornecedor();
 
 		if (fornecedor == null) {
-			System.out.println("fornecedor nao encontrado. Nao È possivel incluir a despesa!");
-		}else{
+			System.out
+					.println("fornecedor nao encontrado. Nao eh possivel incluir a despesa!");
+		} else {
 			despesa.setFornecedor(fornecedor);
 
 			entrada.nextLine();
 			System.out.println("Informe o documento?");
 			despesa.setDocumento(entrada.nextLine());
-			System.out.println("Informe uma descriÁ„o para a despesa?");
+			System.out.println("Informe uma descricao para a despesa?");
 			despesa.setDescricao(entrada.nextLine());
 			System.out.println("Qual data de vencimento (dd/mm/aaaa)?");
 			despesa.setDataVencimento(entrada.nextLine());
@@ -735,7 +769,7 @@ public class MenuPrincipal {
 		}
 	}
 
-	public void listaDespesas(int status){
+	public void listaDespesas(int status) {
 		List<Despesa> lRetorno = new ArrayList<Despesa>();
 		StringBuilder cabecalho = new StringBuilder();
 
@@ -745,76 +779,79 @@ public class MenuPrincipal {
 			System.out.println("Nenhuma despesa encontrada!");
 		}
 		if (!lRetorno.isEmpty()) {
-				cabecalho.append(Formatacao.formata("ID", "D", 6) +
-								 Formatacao.formata("Documento", "D", 15) +
-				                 Formatacao.formata("Descricao", "D", 30) +
-				                 Formatacao.formata("Vencimento", "D", 11) +
-				                 Formatacao.formata("Valor", "E", 10) + " " +
-				                 Formatacao.formata("Status", "D", 8) +
-				                 Formatacao.formata("Data Pgto", "D", 11) +
-				                 Formatacao.formata("Valor Pago", "E", 10) + " " +
-				                 Formatacao.formata("Fornecedor", "D", 40));
-			
+			cabecalho.append(Formatacao.formata("ID", "D", 6)
+					+ Formatacao.formata("Documento", "D", 15)
+					+ Formatacao.formata("Descricao", "D", 30)
+					+ Formatacao.formata("Vencimento", "D", 11)
+					+ Formatacao.formata("Valor", "E", 10) + " "
+					+ Formatacao.formata("Status", "D", 8)
+					+ Formatacao.formata("Data Pgto", "D", 11)
+					+ Formatacao.formata("Valor Pago", "E", 10) + " "
+					+ Formatacao.formata("Fornecedor", "D", 40));
+
 			System.out.println(cabecalho);
-			lRetorno.forEach(obj ->	System.out.print(obj.toStringFormatada()));
-			}
-		
+			lRetorno.forEach(obj -> System.out.print(obj.toStringFormatada()));
+		}
+
 	}
-	
-	public void listaDespesasFornecedor(Pessoa fornecedor, int status){
+
+	public void listaDespesasFornecedor(Pessoa fornecedor, int status) {
 		List<Despesa> lRetorno = new ArrayList<Despesa>();
 		StringBuilder cabecalho = new StringBuilder();
 
 		despesaDAO.listar(fornecedor, status).forEach(obj -> lRetorno.add(obj));
-		
+
 		if (lRetorno.isEmpty()) {
 			System.err.println("Nao existem despesas cadastradas!");
 		} else {
-				cabecalho.append(Formatacao.formata("ID", "D", 6) +
-								 Formatacao.formata("Documento", "D", 15) +
-				                 Formatacao.formata("Descricao", "D", 30) +
-				                 Formatacao.formata("Vencimento", "D", 11) +
-				                 Formatacao.formata("Valor", "E", 10) + " " +
-				                 Formatacao.formata("Status", "D", 8) +
-				                 Formatacao.formata("Data Pgto", "D", 11) +
-				                 Formatacao.formata("Valor Pago", "E", 10) + " " +
-				                 Formatacao.formata("Fornecedor", "D", 40));
-			
+			cabecalho.append(Formatacao.formata("ID", "D", 6)
+					+ Formatacao.formata("Documento", "D", 15)
+					+ Formatacao.formata("Descricao", "D", 30)
+					+ Formatacao.formata("Vencimento", "D", 11)
+					+ Formatacao.formata("Valor", "E", 10) + " "
+					+ Formatacao.formata("Status", "D", 8)
+					+ Formatacao.formata("Data Pgto", "D", 11)
+					+ Formatacao.formata("Valor Pago", "E", 10) + " "
+					+ Formatacao.formata("Fornecedor", "D", 40));
+
 			System.out.println(cabecalho);
-			lRetorno.forEach(obj ->	System.out.print(obj.toStringFormatada()));
-			}
-		
+			lRetorno.forEach(obj -> System.out.print(obj.toStringFormatada()));
+		}
+
 	}
-	
-	public void exibirDepesaFornecedor(){
+
+	public void exibirDepesaFornecedor() {
 		int resposta;
 		Pessoa fornecedor;
-		
+
 		fornecedor = selecionaFornecedor();
 
-		System.out.println("Informe o status das despesas a serem listadas: (0) Pendentes, (1) Baixadas, (2) Todas ");
+		System.out
+				.println("Informe o status das despesas a serem listadas: (0) Pendentes, (1) Baixadas, (2) Todas ");
 		resposta = lerInteiro();
 		listaDespesasFornecedor(fornecedor, resposta);
 	}
 
-	public void exibirDespesa(){
+	public void exibirDespesa() {
 		int resposta;
-		
-		System.out.println("Informe o status das despesas a serem listadas: (0) Pendentes, (1) Baixadas, (2) Todas ");
+
+		System.out
+				.println("Informe o status das despesas a serem listadas: (0) Pendentes, (1) Baixadas, (2) Todas ");
 		resposta = lerInteiro();
 		listaDespesas(resposta);
 	}
 
-	public void alterarDespesa(){
+	public void alterarDespesa() {
 		Despesa despesa = new Despesa();
 		listaDespesas(2);
 
 		System.out.println("Informe o ID da despesa a ser alterada: ");
 		id = entrada.nextInt();
 		despesa = despesaDAO.procurar(id);
-		
+
 		if (desp != null) {
-			System.out.println("Documento atual <" + despesa.getDocumento() + ">, deseja alterar: S ou N?");
+			System.out.println("Documento atual <" + despesa.getDocumento()
+					+ ">, deseja alterar: S ou N?");
 			resposta = entrada.next();
 			if (resposta.equals("S")) {
 				System.out.println("Qual o novo documento?");
@@ -829,7 +866,7 @@ public class MenuPrincipal {
 				System.out.println("Qual a nova descricao?");
 				despesa.setDescricao(entrada.nextLine());
 			}
-			
+
 			System.out.println("Vencimento atual <"
 					+ despesa.getDataVencimento()
 					+ ">, deseja alterar: S ou N?");
@@ -839,7 +876,7 @@ public class MenuPrincipal {
 				System.out.println("Qual o novo vencimento?");
 				despesa.setDataVencimento(entrada.next());
 			}
-			
+
 			System.out.println("Valor atual <" + despesa.getValorNominal()
 					+ ">, deseja alterar: S ou N?");
 			resposta = entrada.next();
@@ -848,20 +885,19 @@ public class MenuPrincipal {
 				despesa.setValorNominal(entrada.nextDouble());
 			}
 			try {
-				despesaDAO.alterarDespesa(despesa);						
+				despesaDAO.alterarDespesa(despesa);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
 		} else {
-			System.out
-					.println("Despesa nao encontrada, tente novamente!");
+			System.out.println("Despesa nao encontrada, tente novamente!");
 		}
-		
+
 	}
-	
-	public void excluirDespesa(){
+
+	public void excluirDespesa() {
 		listaDespesas(2);
-		
+
 		System.out.println("Informe o id da despesa a ser excluida?");
 		int id = entrada.nextInt();
 		desp = despesaDAO.procurar(id);
@@ -872,19 +908,18 @@ public class MenuPrincipal {
 				// TODO: handle exception
 			}
 		} else {
-			System.out
-					.println("Despesa nao encontrada, tente novamente!");
+			System.out.println("Despesa nao encontrada, tente novamente!");
 		}
 	}
-	
-	public void realizarBaixa(){
+
+	public void realizarBaixaDespesa() {
 		listaDespesas(0);
-		
-		System.out.println("Informe o id da despesa quera sera dada baixa?");
-		int id = entrada.nextInt();
+
+		System.out.println("Informe o id da despesa que sera dada baixa?");
+		id = entrada.nextInt();
 		String dataBaixa;
 		double valorBaixa;
-		
+
 		desp = despesaDAO.procurar(id);
 		if (desp != null) {
 			try {
@@ -899,11 +934,10 @@ public class MenuPrincipal {
 				// TODO: handle exception
 			}
 		} else {
-			System.out
-					.println("Despesa nao encontrada, tente novamente!");
+			System.out.println("Despesa nao encontrada, tente novamente!");
 		}
 	}
-	
+
 	public int lerInteiro() {
 		int valor;
 		try {

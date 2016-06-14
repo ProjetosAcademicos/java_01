@@ -88,10 +88,10 @@ public class ReceitaDAO {
 		}
 	}
 
-	public void baixaReceita(String descricao, double valorBaixa,
+	public void baixaReceita(int id, double valorBaixa,
 			String dataBaixa) {
 		for (Receita receita : receitas) {
-			if (receita.getDescricao().equals(descricao)) {
+			if (receita.getId() == id) {
 				receita.baixar(valorBaixa, dataBaixa);
 			}
 		}
@@ -100,7 +100,7 @@ public class ReceitaDAO {
 			PersistenciaDAO.salvar(receitas, "receitas.txt");
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("Erro baixando despesa.");
+			System.out.println("Erro na baixa da receita.");
 		}
 
 	}

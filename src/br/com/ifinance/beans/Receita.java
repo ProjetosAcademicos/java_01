@@ -56,12 +56,7 @@ public class Receita extends Movimento {
 
 	public String toStringFormatada() {
 		StringBuilder strUtil = new StringBuilder();
-		strUtil.append("|" + getId() + "\t" + "|" + getDescricao() + "\t\t"
-				+ "|" + getDataVencimento() + "\t" + "|" + getValorNominal()
-				+ "\t\t" + "|" + getBaixadoSTR() + "\t" + "|"
-				+ getValorRecebido() + "|" + getDataRecebimento() + "\t" + "|"
-				+ getCliente().getNome() + "\t" + "|" + "|" + getTipoCliente());
-
+		strUtil.append(getId() + "\t" + getDescricao());
 		return strUtil.toString();
 	}
 
